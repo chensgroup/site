@@ -26,6 +26,22 @@ nav {
   margin-top: 1rem;
 }
 
+nav a {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+  font-weight: 500;
+}
+
+nav a:hover {
+  background: #0056b3;
+}
+
+
 nav .menu-zh a,
 nav .menu-en a {
   display: inline-block;
