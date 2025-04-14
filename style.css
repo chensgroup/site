@@ -1,3 +1,4 @@
+
 body {
   font-family: sans-serif;
   margin: 0;
@@ -26,8 +27,7 @@ nav {
   margin-top: 1rem;
 }
 
-nav .menu-zh a,
-nav .menu-en a {
+nav a {
   display: inline-block;
   padding: 0.5rem 1.2rem;
   background: #007BFF;
@@ -35,10 +35,10 @@ nav .menu-en a {
   text-decoration: none;
   border-radius: 8px;
   transition: background 0.3s ease;
+  font-weight: 500;
 }
 
-nav .menu-zh a:hover,
-nav .menu-en a:hover {
+nav a:hover {
   background: #0056b3;
   cursor: pointer;
 }
@@ -51,30 +51,6 @@ main {
   background: #e7f0ff;
   padding: 1rem;
   border-radius: 8px;
-}
-
-.photo-grid {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.person-card {
-  text-align: center;
-}
-
-.person-card img {
-  width: 150px;
-  height: auto;
-  border-radius: 10px;
-}
-
-footer {
-  background: #f0f0f0;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
 }
 
 .photo-grid {
@@ -99,4 +75,11 @@ footer {
 .person-card p {
   margin: 0.3rem 0;
   font-size: 0.95rem;
+}
+
+footer {
+  background: #f0f0f0;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
 }
