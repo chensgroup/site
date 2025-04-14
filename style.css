@@ -39,23 +39,6 @@ nav a {
 
 nav a:hover {
   background: #0056b3;
-}
-
-
-nav .menu-zh a,
-nav .menu-en a {
-  display: inline-block;
-  padding: 0.5rem 1.2rem;
-  background: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.3s ease;
-}
-
-nav .menu-zh a:hover,
-nav .menu-en a:hover {
-  background: #0056b3;
   cursor: pointer;
 }
 
@@ -70,20 +53,27 @@ main {
 }
 
 .photo-grid {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  justify-items: center;
 }
 
 .person-card {
   text-align: center;
+  max-width: 180px;
 }
 
 .person-card img {
-  width: 150px;
+  width: 100%;
   height: auto;
   border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.person-card p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
 }
 
 footer {
