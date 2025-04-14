@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physics Education Lab</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>
+      <span class="lang-zh">物理教育研究室</span>
+      <span class="lang-en">Physics Education Research Lab</span>
+    </h1>
+    <nav>
+      <ul>
+        <li><a href="index.html?lang=zh" id="link-zh">中文</a> | <a href="index.html?lang=en" id="link-en">English</a></li>
+        <li><a href="people.html?lang={lang}">人員 / People</a></li>
+        <li><a href="research.html?lang={lang}">研究發表 / Research</a></li>
+        <li><a href="course.html?lang={lang}">課程 / Course</a></li>
+        <li><a href="resources.html?lang={lang}">資源 / Resources</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+  <h2 class="lang-zh">歡迎來到物理教育研究室</h2>
+  <h2 class="lang-en">Welcome to the Physics Education Research Lab</h2>
+  <p class="lang-zh">本研究室致力於推動物理教學與雙語課程。</p>
+  <p class="lang-en">Our lab is dedicated to physics education and bilingual teaching.</p>
+</section>
+  </main>
+  <footer>
+    <p class="lang-zh">© 2025 物理教育研究室</p>
+    <p class="lang-en">© 2025 Physics Education Lab</p>
+  </footer>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang") || "zh";
+    document.querySelectorAll(".lang-zh").forEach(el => {
+      el.style.display = lang === "zh" ? "inline" : "none";
+    });
+    document.querySelectorAll(".lang-en").forEach(el => {
+      el.style.display = lang === "en" ? "inline" : "none";
+    });
+    document.getElementById("link-zh").style.fontWeight = lang === "zh" ? "bold" : "normal";
+    document.getElementById("link-en").style.fontWeight = lang === "en" ? "bold" : "normal";
+  </script>
+</body>
+</html>
