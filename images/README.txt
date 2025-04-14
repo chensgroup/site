@@ -1,1 +1,0 @@
-請將所有人物照片（.jpg/.png）放入此資料夾，例如：professor.jpg, member1.png 等
