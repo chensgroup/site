@@ -1,5 +1,47 @@
-body { font-family: sans-serif; line-height: 1.6; margin: 2em; }
-header, footer { background: #f5f5f5; padding: 1em; }
-nav ul { list-style: none; padding: 0; display: flex; gap: 1em; }
-a { text-decoration: none; }
-h1 { font-size: 1.5em; }
+body {
+  font-family: sans-serif;
+  margin: 0; padding: 0;
+  background: #fff;
+  color: #222;
+}
+header {
+  background: #007BFF;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+nav {
+  margin-top: 0.5rem;
+}
+nav a {
+  color: white;
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+main {
+  padding: 2rem;
+}
+.banner {
+  background: #e7f0ff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.photo-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.person-card {
+  text-align: center;
+}
+.person-card img {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+}
+footer {
+  background: #f0f0f0;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}

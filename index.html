@@ -3,48 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Physics Education Lab</title>
+  <title>Chen's Group</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>
-      <span class="lang-zh">物理教育研究室</span>
-      <span class="lang-en">Physics Education Research Lab</span>
-    </h1>
+    <h1>Chen's Group</h1>
     <nav>
-      <ul>
-        <li><a href="index.html?lang=zh" id="link-zh">中文</a> | <a href="index.html?lang=en" id="link-en">English</a></li>
-        <li><a href="people.html?lang={lang}">人員 / People</a></li>
-        <li><a href="research.html?lang={lang}">研究發表 / Research</a></li>
-        <li><a href="course.html?lang={lang}">課程 / Course</a></li>
-        <li><a href="resources.html?lang={lang}">資源 / Resources</a></li>
-      </ul>
+      <a href="index.html">首頁 / Home</a>
+      <a href="people.html">成員 / People</a>
+      <a href="research.html">研究 / Research</a>
+      <a href="course.html">課程 / Course</a>
+      <a href="resources.html">資源 / Resources</a>
+      <a href="index_en.html" class="lang-switch">EN / 中文</a>
     </nav>
   </header>
+
   <main>
-    <section>
-  <h2 class="lang-zh">歡迎來到物理教育研究室</h2>
-  <h2 class="lang-en">Welcome to the Physics Education Research Lab</h2>
-  <p class="lang-zh">本研究室致力於推動物理教學與雙語課程。</p>
-  <p class="lang-en">Our lab is dedicated to physics education and bilingual teaching.</p>
+    
+<section class="banner">
+  <h2>歡迎來到 Chen’s Group</h2>
+  <p>本實驗室專注於物理教育、探究教學與雙語課程發展。</p>
 </section>
+<section class="news">
+  <h3>最新消息</h3>
+  <ul>
+    <li>2025/04/10：網站建置中，敬請期待！</li>
+  </ul>
+</section>
+
   </main>
+
   <footer>
-    <p class="lang-zh">© 2025 物理教育研究室</p>
-    <p class="lang-en">© 2025 Physics Education Lab</p>
+    <p>© 2025 Chen’s Group</p>
   </footer>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const lang = params.get("lang") || "zh";
-    document.querySelectorAll(".lang-zh").forEach(el => {
-      el.style.display = lang === "zh" ? "inline" : "none";
-    });
-    document.querySelectorAll(".lang-en").forEach(el => {
-      el.style.display = lang === "en" ? "inline" : "none";
-    });
-    document.getElementById("link-zh").style.fontWeight = lang === "zh" ? "bold" : "normal";
-    document.getElementById("link-en").style.fontWeight = lang === "en" ? "bold" : "normal";
-  </script>
 </body>
 </html>
