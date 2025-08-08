@@ -5,122 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chen's Group</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+      padding: 2rem;
+    }
+
+    .person-card {
+      text-align: center;
+    }
+
+    .person-card img {
+      width: 150px;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .person-card img:hover {
+      transform: scale(1.05);
+    }
+
+    .lang-zh, .lang-en {
+      margin: 0.3em 0;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Chen's Group</h1>
-    
-<nav class="menu-zh">
-  <a href="index.html">首頁</a>
-  <a href="people.html">成員</a>
-  <a href="research.html">研究</a>
-  <a href="course.html">課程</a>
-  <a href="resources.html">資源</a>
-  <a href="index_en.html">English</a>
-</nav>
-
+    <nav class="menu-zh">
+      <a href="index.html">首頁</a>
+      <a href="people.html">成員</a>
+      <a href="research.html">研究</a>
+      <a href="course.html">課程</a>
+      <a href="resources.html">資源</a>
+      <a href="index_en.html">English</a>
+    </nav>
   </header>
 
   <main>
     <h2>成員介紹</h2>
-<div class="photo-grid">
+    <div class="photo-grid">
 
-  <div class="person-card">
-    <picture>
-      <source srcset="images/professor.webp" type="image/webp">
-      <source srcset="images/professor.png" type="image/png">
-      <source srcset="images/professor.jpg" type="image/jpeg">
-      <img src="images/professor.png" alt="陳教授 / Prof. Chen" />
-    </picture>
-    <p class="lang-zh"><strong>陳教授</strong><br>實驗室主持人</p>
-    <p class="lang-en"><strong>Prof. Chen</strong><br>實驗室主持人</p>
-  </div>
+      <div class="person-card">
+        <img src="images/professor.png" alt="Prof. Chen" />
+        <p class="lang-zh"><strong>陳教授</strong><br>實驗室主持人</p>
+        <p class="lang-en"><strong>Prof. Chen</strong><br>Lab Director</p>
+      </div>
 
+      <div class="person-card">
+        <img src="images/member1.png" alt="王小明 / Wang Xiaoming" />
+        <p class="lang-zh"><strong>王小明</strong><br>研究生 (2024-)</p>
+        <p class="lang-en"><strong>Wang Xiaoming</strong><br>Graduate Student</p>
+      </div>
 
-  <div class="person-card">
-    <picture>
-      <source srcset="images/member1.webp" type="image/webp">
-      <source srcset="images/member1.png" type="image/png">
-      <source srcset="images/member1.jpg" type="image/jpeg">
-      <img src="images/member1.png" alt="王小明 / Wang Xiaoming" />
-    </picture>
-    <p class="lang-zh"><strong>王小明</strong><br>研究生 (2024-)</p>
-    <p class="lang-en"><strong>Wang Xiaoming</strong><br>研究生 (2024-)</p>
-  </div>
+      <div class="person-card">
+        <img src="images/member2.png" alt="林小白 / Lin Xiaobai" />
+        <p class="lang-zh"><strong>林小白</strong><br>網站維護</p>
+        <p class="lang-en"><strong>Lin Xiaobai</strong><br>Web Maintainer</p>
+      </div>
 
+      <div class="person-card">
+        <img src="images/member3.png" alt="張大偉 / Chang David" />
+        <p class="lang-zh"><strong>張大偉</strong><br>課程助教</p>
+        <p class="lang-en"><strong>Chang David</strong><br>Course TA</p>
+      </div>
 
-  <div class="person-card">
-    <picture>
-      <source srcset="images/member2.webp" type="image/webp">
-      <source srcset="images/member2.png" type="image/png">
-      <source srcset="images/member2.jpg" type="image/jpeg">
-      <img src="images/member2.png" alt="林小白 / Lin Xiaobai" />
-    </picture>
-    <p class="lang-zh"><strong>林小白</strong><br>網站維護</p>
-    <p class="lang-en"><strong>Lin Xiaobai</strong><br>網站維護</p>
-  </div>
+      <div class="person-card">
+        <img src="images/member4.png" alt="許心怡 / Hsu Hsin-Yi" />
+        <p class="lang-zh"><strong>許心怡</strong><br>課程助教</p>
+        <p class="lang-en"><strong>Hsu Hsin-Yi</strong><br>Course TA</p>
+      </div>
 
+      <div class="person-card">
+        <img src="images/member5.png" alt="鄭乃文 / Cheng Nai-Wen" />
+        <p class="lang-zh"><strong>鄭乃文</strong><br>研究生</p>
+        <p class="lang-en"><strong>Cheng Nai-Wen</strong><br>Graduate Student</p>
+      </div>
 
-  <div class="person-card">
-    <picture>
-      <source srcset="images/member3.webp" type="image/webp">
-      <source srcset="images/member3.png" type="image/png">
-      <source srcset="images/member3.jpg" type="image/jpeg">
-      <img src="images/member3.png" alt="張大偉 / Chang David" />
-    </picture>
-    <p class="lang-zh"><strong>張大偉</strong><br>課程助教</p>
-    <p class="lang-en"><strong>Chang David</strong><br>課程助教</p>
-  </div>
+      <div class="person-card">
+        <img src="images/member6.png" alt="劉芷涵 / Liu Chih-Han" />
+        <p class="lang-zh"><strong>劉芷涵</strong><br>教學資源整理</p>
+        <p class="lang-en"><strong>Liu Chih-Han</strong><br>Teaching Materials</p>
+      </div>
 
+      <div class="person-card">
+        <img src="images/member7.png" alt="蔡承翰 / Tsai Cheng-Han" />
+        <p class="lang-zh"><strong>蔡承翰</strong><br>專題生</p>
+        <p class="lang-en"><strong>Tsai Cheng-Han</strong><br>Project Student</p>
+      </div>
 
-  <div class="person-card">
-    <picture>
-      <source srcset="images/member4.webp" type="image/webp">
-      <source srcset="images/member4.png" type="image/png">
-      <source srcset="images/member4.jpg" type="image/jpeg">
-      <img src="images/member4.png" alt="許心怡 / Hsu Hsin-Yi" />
-    </picture>
-    <p class="lang-zh"><strong>許心怡</strong><br>課程助教</p>
-    <p class="lang-en"><strong>Hsu Hsin-Yi</strong><br>課程助教</p>
-  </div>
-
-
-  <div class="person-card">
-    <picture>
-      <source srcset="images/member5.webp" type="image/webp">
-      <source srcset="images/member5.png" type="image/png">
-      <source srcset="images/member5.jpg" type="image/jpeg">
-      <img src="images/member5.png" alt="鄭乃文 / Cheng Nai-Wen" />
-    </picture>
-    <p class="lang-zh"><strong>鄭乃文</strong><br>研究生</p>
-    <p class="lang-en"><strong>Cheng Nai-Wen</strong><br>研究生</p>
-  </div>
-
-
-  <div class="person-card">
-    <picture>
-      <source srcset="images/member6.webp" type="image/webp">
-      <source srcset="images/member6.png" type="image/png">
-      <source srcset="images/member6.jpg" type="image/jpeg">
-      <img src="images/member6.png" alt="劉芷涵 / Liu Chih-Han" />
-    </picture>
-    <p class="lang-zh"><strong>劉芷涵</strong><br>教學資源整理</p>
-    <p class="lang-en"><strong>Liu Chih-Han</strong><br>教學資源整理</p>
-  </div>
-
-
-  <div class="person-card">
-    <picture>
-      <source srcset="images/member7.webp" type="image/webp">
-      <source srcset="images/member7.png" type="image/png">
-      <source srcset="images/member7.jpg" type="image/jpeg">
-      <img src="images/member7.png" alt="蔡承翰 / Tsai Cheng-Han" />
-    </picture>
-    <p class="lang-zh"><strong>蔡承翰</strong><br>專題生</p>
-    <p class="lang-en"><strong>Tsai Cheng-Han</strong><br>專題生</p>
-  </div>
-
-</div>
+    </div>
   </main>
 
   <footer>
