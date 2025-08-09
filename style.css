@@ -292,3 +292,52 @@ body.no-scroll { overflow: hidden; }
     display: none !important;
   }
 }
+
+/* 手機：全螢幕工作表＋內容可滾動 */
+@media (max-width: 720px) {
+  .modal { background: rgba(0,0,0,.65); }
+
+  /* 用 100dvh 解決 iOS 位址列高度變動 */
+  .modal__panel{
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    margin: 0;
+    border-radius: 0;
+    padding: 0;
+    display: flex;           /* 直向排版，讓內容吃滿剩餘高度 */
+    flex-direction: column;
+    overflow: hidden;        /* 邊界裁切，內層負責滾動 */
+  }
+
+  .modal__topbar{
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: .9rem 1rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    z-index: 1;
+  }
+
+  .modal__photo img{
+    width: 100%;
+    height: 38dvh;           /* 佔上方一段，避免把內容擠出視窗 */
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+  }
+
+  .modal__body{
+    flex: 1;                 /* 吃滿剩餘高度 */
+    overflow: auto;          /* 這層滾動！ */
+    -webkit-overflow-scrolling: touch; /* iOS 慣性滑動 */
+    padding: 1rem 1.1rem 1.5rem;
+  }
+
+  /* 手機只顯示頂部的 X；桌機 X 已用你上一步的媒體查詢切換 */
+  .modal__panel > .modal__close { display: none; }
+}
