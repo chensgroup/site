@@ -233,116 +233,126 @@
     <p>© 2025 Chen’s Group</p>
   </footer>
 
-  <script>
-  (() => {
-    const modal = document.getElementById('profile-modal');
-    const panel = modal.querySelector('.modal__panel');
-    const closeBtns = modal.querySelectorAll('.modal__close');
-    const topbar = modal.querySelector('.modal__topbar');
+<script>
+(() => {
+  const modal = document.getElementById('profile-modal');
+  const panel = modal.querySelector('.modal__panel');
+  const closeBtns = modal.querySelectorAll('.modal__close');
+  const topbar = modal.querySelector('.modal__topbar');
 
-    const imgEl = document.getElementById('m-photo');
-    const nameEl = document.getElementById('m-name');
-    const nameMobileEl = document.getElementById('m-name-mobile');
-    const titleEl = document.getElementById('m-title');
-    const infoEl = document.getElementById('m-info');
-    const actionsEl = document.getElementById('m-actions');
+  const imgEl = document.getElementById('m-photo');
+  const nameEl = document.getElementById('m-name');
+  const nameMobileEl = document.getElementById('m-name-mobile');
+  const titleEl = document.getElementById('m-title');
+  const infoEl = document.getElementById('m-info');
+  const actionsEl = document.getElementById('m-actions');
+  const bodyEl = document.querySelector('.modal__body'); // 內容可捲動區
 
-    const label = {
-      degree:'最高學歷：',
-      office:'Office Hour：',
-      fields:'研究領域：',
-      expertise:'研究專長：',
-      phone:'電話：',
-      email:'信箱：',
-      website:'個人網站：'
+  const label = {
+    degree:'最高學歷：',
+    office:'Office Hour：',
+    fields:'研究領域：',
+    expertise:'研究專長：',
+    phone:'電話：',
+    email:'信箱：',
+    website:'個人網站：'
+  };
+
+  function openModalFromCard(card){
+    const data = {
+      name:card.dataset.name || '',
+      title:card.dataset.title || '',
+      degree:card.dataset.degree || '',
+      office:card.dataset.office || '',
+      fields:card.dataset.fields || '',
+      expertise:card.dataset.expertise || '',
+      phone:card.dataset.phone || '',
+      email:card.dataset.email || '',
+      website:card.dataset.website || '',
+      photo:card.dataset.photo || card.querySelector('img')?.src || ''
     };
 
-    function openModalFromCard(card){
-      const data = {
-        name:card.dataset.name || '',
-        title:card.dataset.title || '',
-        degree:card.dataset.degree || '',
-        office:card.dataset.office || '',
-        fields:card.dataset.fields || '',
-        expertise:card.dataset.expertise || '',
-        phone:card.dataset.phone || '',
-        email:card.dataset.email || '',
-        website:card.dataset.website || '',
-        photo:card.dataset.photo || card.querySelector('img')?.src || ''
-      };
+    imgEl.src = data.photo;
+    imgEl.alt = data.name ? data.name + ' 的照片' : 'Profile photo';
+    nameEl.textContent = data.name;
+    nameMobileEl.textContent = data.name;
+    titleEl.textContent = data.title;
 
-      imgEl.src = data.photo;
-      imgEl.alt = data.name ? data.name + ' 的照片' : 'Profile photo';
-      nameEl.textContent = data.name;
-      nameMobileEl.textContent = data.name;
-      titleEl.textContent = data.title;
+    infoEl.innerHTML = '';
+    actionsEl.innerHTML = '';
 
-      infoEl.innerHTML = '';
-      actionsEl.innerHTML = '';
-
-      const rows = [
-        ['degree', data.degree],
-        ['office', data.office],
-        ['fields', data.fields],
-        ['expertise', data.expertise],
-        ['phone', data.phone],
-        ['email', data.email],
-        ['website', data.website],
-      ];
-      rows.forEach(([key,val]) => {
-        if(!val) return;
-        const p = document.createElement('p');
-        if(key==='email'){
-          p.innerHTML = `<strong>${label[key]}</strong><a href="mailto:${val}">${val}</a>`;
-        }else if(key==='website'){
-          p.innerHTML = `<strong>${label[key]}</strong><a href="${val}" target="_blank" rel="noopener">${val}</a>`;
-        }else{
-          p.innerHTML = `<strong>${label[key]}</strong>${val}`;
-        }
-        infoEl.appendChild(p);
-      });
-
-      // 手機時顯示置頂列
-      if (window.matchMedia('(max-width: 720px)').matches) {
-        topbar.style.display = 'flex';
-      } else {
-        topbar.style.display = 'none';
+    const rows = [
+      ['degree', data.degree],
+      ['office', data.office],
+      ['fields', data.fields],
+      ['expertise', data.expertise],
+      ['phone', data.phone],
+      ['email', data.email],
+      ['website', data.website],
+    ];
+    rows.forEach(([key,val]) => {
+      if(!val) return;
+      const p = document.createElement('p');
+      if(key==='email'){
+        p.innerHTML = `<strong>${label[key]}</strong><a href="mailto:${val}">${val}</a>`;
+      }else if(key==='website'){
+        p.innerHTML = `<strong>${label[key]}</strong><a href="${val}" target="_blank" rel="noopener">${val}</a>`;
+      }else{
+        p.innerHTML = `<strong>${label[key]}</strong>${val}`;
       }
-
-      modal.style.display = 'block';
-      modal.setAttribute('aria-hidden','false');
-      document.body.classList.add('no-scroll');
-      document.addEventListener('keydown', escToClose);
-    }
-
-    function closeModal(){
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden','true');
-      document.body.classList.remove('no-scroll');
-      document.removeEventListener('keydown', escToClose);
-    }
-
-    function escToClose(e){ if(e.key==='Escape') closeModal(); }
-
-    // 點背景關閉（避免點在面板內容上就關閉）
-    modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
-    // 關閉鈕
-    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
-    // 防止面板內部點擊冒泡到背景
-    panel.addEventListener('click', e => e.stopPropagation());
-
-    // 綁定所有可點卡片
-    const clickableCards = document.querySelectorAll('.person-card.profile');
-    clickableCards.forEach(card => {
-      card.addEventListener('click', () => openModalFromCard(card));
-      card.addEventListener('keydown', e => {
-        if(e.key==='Enter' || e.key===' '){
-          e.preventDefault();
-          openModalFromCard(card);
-        }
-      });
+      infoEl.appendChild(p);
     });
-  })();
-  </script>
+
+    if (window.matchMedia('(max-width: 720px)').matches) {
+      topbar.style.display = 'flex';
+    } else {
+      topbar.style.display = 'none';
+    }
+
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('no-scroll');
+    if (bodyEl) bodyEl.scrollTop = 0; // 開啟時捲到最上面（修 iOS 殘留捲動）
+
+    document.addEventListener('keydown', escToClose);
+  }
+
+  function closeModal(){
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('no-scroll');
+    document.removeEventListener('keydown', escToClose);
+  }
+
+  function escToClose(e){ if(e.key==='Escape') closeModal(); }
+
+  // 點背景關閉（避免點在面板內容上就關閉）
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+  // iOS：阻擋在背景層的觸控滾動，避免背景跟著捲
+  modal.addEventListener('touchmove', (e) => {
+    if (e.target === modal) e.preventDefault();
+  }, { passive: false });
+
+  // 關閉鈕
+  closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+  // 防止面板內部點擊冒泡到背景
+  panel.addEventListener('click', e => e.stopPropagation());
+
+  // 綁定所有可點卡片
+  const clickableCards = document.querySelectorAll('.person-card.profile');
+  clickableCards.forEach(card => {
+    card.addEventListener('click', () => openModalFromCard(card));
+    card.addEventListener('keydown', e => {
+      if(e.key==='Enter' || e.key===' '){
+        e.preventDefault();
+        openModalFromCard(card);
+      }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
