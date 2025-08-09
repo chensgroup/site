@@ -1,343 +1,240 @@
-/* 字體設定 - 使用 Google Fonts */
+/* ===== 字體 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f8faff;
-  color: #222;
-  line-height: 1.6;
+:root{
+  --blue:#007BFF;
+  --ink:#222;
+  --bg:#f8faff;
+  --muted:#555;
+  --card-shadow:0 4px 12px rgba(0,0,0,.1);
+  --card-shadow-hover:0 6px 16px rgba(0,0,0,.15);
 }
 
-/* 頁首(原0056b3) */
-header {
-  background: linear-gradient(135deg, #007bff, #6f3381);
-  color: white;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+/* ===== 全域 ===== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Microsoft JhengHei",sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 2.4rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+/* 背景滾動鎖（配合 JS 的 --scroll-lock） */
+body.no-scroll{
+  position:fixed;
+  width:100%;
+  left:0; right:0;
+  top:var(--scroll-lock, 0);
 }
 
-/* 導覽列 */
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 1.2rem;
+/* ===== Header / Nav ===== */
+header{
+  background:linear-gradient(135deg, var(--blue), #6f3381);
+  color:#fff;
+  padding:2rem 1.5rem;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+header h1{
+  margin:0;
+  font-size:2.4rem;
+  font-weight:700;
+  letter-spacing:1px;
+}
+nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:.8rem;
+  margin-top:1.2rem;
+}
+nav a{
+  display:inline-block;
+  padding:.5rem 1.2rem;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  text-decoration:none;
+  border-radius:6px;
+  transition:all .3s ease;
+  font-weight:500;
+  backdrop-filter:blur(4px);
+}
+nav a:hover{
+  background:#fff;
+  color:var(--blue);
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
-nav a {
-  display: inline-block;
-  padding: 0.5rem 1.2rem;
-  background: rgba(255,255,255,0.15);
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  backdrop-filter: blur(4px);
+/* ===== 主要內容區 ===== */
+main{max-width:1100px;margin:0 auto;padding:2rem 1rem}
+.banner{
+  background:linear-gradient(135deg,#e7f0ff,#f0f5ff);
+  padding:1rem 1.5rem;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 
-nav a:hover {
-  background: white;
-  color: #007BFF;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+/* ===== 成員格子與卡片 ===== */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:2rem;
+  justify-items:center;
+  align-items:start;
+  padding:2rem 0;
+}
+.person-card{
+  width:220px;
+  text-align:center;
+}
+.person-card img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:12px;
+  box-shadow:var(--card-shadow);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.person-card:hover img{
+  transform:scale(1.04);
+  box-shadow:var(--card-shadow-hover);
+}
+.lang-zh,.lang-en{ margin:.35rem 0; line-height:1.4; }
+
+/* ===== 響應式（格子） ===== */
+@media (max-width:900px){
+  .photo-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:560px){
+  .photo-grid{ grid-template-columns:1fr; gap:1.2rem; padding:1rem 0; }
+  .person-card{ width:min(92vw,420px); margin:0 auto; }
+  .person-card img{ border-radius:14px; }
+  .person-card p{ font-size:.95rem; line-height:1.35; margin:.25rem 0; }
+  .lang-en{ display:none; } /* 中文頁：手機隱藏英文行，畫面更乾淨 */
 }
 
-/* 主內容區 */
-main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
+/* ===== 頁尾 ===== */
+footer{
+  background:#f0f0f0;
+  text-align:center;
+  padding:1rem;
+  font-size:.9rem;
+  color:#555;
+  border-top:1px solid #ddd;
 }
 
-/* Banner */
-.banner {
-  background: linear-gradient(135deg, #e7f0ff, #f0f5ff);
-  padding: 1rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+/* ===== 彈窗（共用） ===== */
+.modal{
+  display:none;               /* 用 JS 切換 */
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:rgba(0,0,0,.5);
+  overscroll-behavior:contain; /* 阻止外層回彈 */
+  touch-action:none;           /* 避免背景手勢誤觸 */
+}
+.modal__panel{
+  position:relative;
+  width:min(900px, 92vw);
+  margin:6vh auto;
+  background:#fff;
+  border-radius:12px;
+  padding:1.5rem;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:1.25rem;
+  animation:modalFadeIn .25s ease;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+.modal__photo img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:10px;
+  display:block;
+}
+.modal__body h2{ margin:.2rem 0 .25rem 0; font-size:1.4rem; }
+.modal__subtitle{ margin:0 0 .75rem 0; color:#555; font-weight:600; }
+.modal__info p{ margin:.35rem 0; line-height:1.55; }
+.modal__info strong{ color:#1f3d7a; }
+
+.modal__actions{ margin-top:1rem; }
+
+/* 右上角關閉（桌機用） */
+.modal__close{
+  position:absolute;
+  top:10px; right:12px;
+  font-size:1.8rem;
+  line-height:1;
+  border:none;
+  background:transparent;
+  color:#666;
+  cursor:pointer;
+}
+.modal__close:hover{ color:#000; }
+
+@keyframes modalFadeIn{
+  from{ opacity:0; transform:translateY(-6px); }
+  to{ opacity:1; transform:translateY(0); }
 }
 
-/* 每排三個人 */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 欄 */
-  gap: 2rem;
-  justify-items: center;
-  align-items: start;
-  padding: 2rem 0;
-}
+/* ===== 手機彈窗：全螢幕工作表，上圖下文，可滑動 ===== */
+@media (max-width:720px){
+  .modal{ background:rgba(0,0,0,.65); }
 
-/* 卡片統一寬度，避免文字換行造成大小不一 */
-.person-card {
-  width: 220px;
-  text-align: center;
-}
-
-/* 圖片固定比例、裁切置中，看起來整齊 */
-.person-card img {
-  width: 100%;
-  aspect-ratio: 4/5;      /* 視覺上接近大頭照比例 */
-  object-fit: cover;       /* 超出就裁切 */
-  border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.person-card img:hover {
-  transform: scale(1.04);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-
-/* 中英行距微調 */
-.lang-zh, .lang-en {
-  margin: 0.35em 0;
-  line-height: 1.4;
-}
-
-/* 響應式：較窄時降到 2 欄與 1 欄 */
-@media (max-width: 900px) {
-  .photo-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 560px) {
-  .photo-grid { grid-template-columns: 1fr; }
-}
-
-/* 頁尾 */
-footer {
-  background: #f0f0f0;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #555;
-  border-top: 1px solid #ddd;
-}
-
-/* 強制三欄：用更高選擇器 + !important 壓過舊規則 */
-body main .photo-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 2rem !important;
-  justify-items: center !important;
-  align-items: start !important;
-  padding: 2rem 0 !important;
-}
-
-/* 卡片不要佔滿整行，避免外部樣式把它變 100% 寬 */
-body main .photo-grid .person-card {
-  width: auto !important;
-  max-width: 220px;
-  text-align: center;
-}
-
-/* 彈窗背景 */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(0,0,0,0.5);
-}
-
-/* 彈窗內容 */
-.modal__panel {
-  position: relative;
-  width: min(900px, 92vw);
-  margin: 6vh auto;
-  background: #fff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 1.25rem;
-  animation: modalFadeIn 0.25s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-/* 左邊照片 */
-.modal__photo img {
-  width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* 右邊文字 */
-.modal__body h2 {
-  margin: 0 0 0.25rem 0;
-  font-size: 1.4rem;
-}
-.modal__subtitle {
-  margin: 0 0 0.75rem 0;
-  color: #555;
-  font-weight: 600;
-}
-.modal__info p { margin: 0.25rem 0; }
-.modal__info strong { color: #1f3d7a; } /* 藍系細節 */
-
-.modal__actions {
-  margin-top: 1rem;
-}
-
-/* 關閉按鈕 */
-.modal__close {
-  position: absolute;
-  top: 10px; right: 12px;
-  font-size: 1.8rem;
-  line-height: 1;
-  cursor: pointer;
-  color: #666;
-  border: none;
-  background: transparent;
-}
-.modal__close:hover { color: #000; }
-
-/* 小螢幕改縱向排版 */
-@media (max-width: 720px) {
-  .modal__panel {
-    grid-template-columns: 1fr;
-  }
-}
-
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* 手機：卡片間距加大、字變小、只顯示中文行 */
-@media (max-width: 560px) {
-  .photo-grid {
-    grid-template-columns: 1fr !important;  /* 一欄 */
-    gap: 1.2rem !important;
-    padding: 1rem 0 !important;
-  }
-  .person-card { width: min(92vw, 420px); margin: 0 auto; }
-  .person-card img { border-radius: 14px; }
-  .person-card p { font-size: 0.95rem; line-height: 1.35; margin: 0.25rem 0; }
-  .lang-en { display: none; }               /* 中文頁就隱藏英文，乾淨許多 */
-}
-
-/* 禁止背景滾動時用 */
-body.no-scroll { overflow: hidden; }
-
-/* 手機：彈窗全螢幕工作表風格 */
-@media (max-width: 720px) {
-  .modal { background: rgba(0,0,0,0.65); }
-  .modal__panel {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    border-radius: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr;
-    padding: 0;
-    overflow: hidden;
-  }
-  /* 置頂欄：名稱＋關閉 */
-  .modal__topbar {
-    position: sticky;
-    top: 0;
-    background: #fff;
-    padding: 0.9rem 1rem;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    z-index: 1;
-  }
-  .modal__close { position: static; font-size: 1.5rem; margin-left: auto; }
-
-  /* 照片佔上半部，置中裁切 */
-  .modal__photo { padding: 0; }
-  .modal__photo img {
-    width: 100%;
-    height: 40vh;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
-  }
-
-  /* 內容可捲動 */
-  .modal__body {
-    padding: 1rem 1.1rem 1.5rem;
-    overflow: auto;
-  }
-  .modal__body h2 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
-  .modal__subtitle { margin-bottom: 0.75rem; color: #555; }
-  .modal__info p { margin: 0.4rem 0; line-height: 1.5; }
-}
-
-/* 手機：隱藏桌機用的右上角 X */
-@media (max-width: 720px) {
-  .modal__panel > .modal__close {
-    display: none;
-  }
-}
-
-/* 桌機：隱藏手機置頂列 */
-@media (min-width: 721px) {
-  .modal__topbar {
-    display: none !important;
-  }
-}
-
-/* 手機：全螢幕工作表＋內容可滾動 */
-@media (max-width: 720px) {
-  .modal { background: rgba(0,0,0,.65); }
-
-  /* 用 100dvh 解決 iOS 位址列高度變動 */
   .modal__panel{
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100dvh;
-    margin: 0;
-    border-radius: 0;
-    padding: 0;
-    display: flex;           /* 直向排版，讓內容吃滿剩餘高度 */
-    flex-direction: column;
-    overflow: hidden;        /* 邊界裁切，內層負責滾動 */
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100dvh;       /* 避免 iOS 位址列高度變動 */
+    margin:0;
+    border-radius:0;
+    padding:0;
+    display:flex;        /* 直向排版：頂欄 / 圖片 / 內容 */
+    flex-direction:column;
+    overflow:hidden;     /* 由內層滾動 */
   }
 
+  /* 手機置頂列（名稱＋關閉） */
   .modal__topbar{
-    position: sticky;
-    top: 0;
-    background: #fff;
-    padding: .9rem 1rem;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-    z-index: 1;
+    position:sticky;
+    top:0;
+    background:#fff;
+    padding:.9rem 1rem;
+    border-bottom:1px solid #eee;
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+    z-index:1;
   }
+  .modal__topbar .name{ font-weight:600; }
+  /* 桌機用關閉鍵在手機隱藏，僅保留頂欄的關閉鍵 */
+  .modal__panel > .modal__close{ display:none; }
 
+  /* 圖片佔上方區域，避免把文字擠出視窗 */
   .modal__photo img{
-    width: 100%;
-    height: 38dvh;           /* 佔上方一段，避免把內容擠出視窗 */
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
+    width:100%;
+    height:38dvh;        /* 可微調 36~42dvh 視你照片構圖 */
+    object-fit:cover;
+    border-radius:0;
   }
 
+  /* 內容區可滾動 */
   .modal__body{
-    flex: 1;                 /* 吃滿剩餘高度 */
-    overflow: auto;          /* 這層滾動！ */
-    -webkit-overflow-scrolling: touch; /* iOS 慣性滑動 */
-    padding: 1rem 1.1rem 1.5rem;
+    flex:1;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+    padding:1rem 1.1rem 1.5rem;
   }
 
-  /* 手機只顯示頂部的 X；桌機 X 已用你上一步的媒體查詢切換 */
-  .modal__panel > .modal__close { display: none; }
+  .modal__body h2{ font-size:1.25rem; }
+}
+
+/* ===== 關閉鍵顯示控制：避免同時出現兩顆 X ===== */
+/* 桌機隱藏手機置頂列 */
+@media (min-width:721px){
+  .modal__topbar{ display:none !important; }
 }
