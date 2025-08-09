@@ -139,7 +139,7 @@
            data-name="陳教授"
            data-title="合聘副教授"
            data-degree="國立臺灣大學博士"
-           data-office=""
+           data-office="S711但是基本上不在"
            data-fields="奈米光學, 物理教學, 數理資優教育"
            data-expertise="電漿子能量與電荷轉移、探究與實作教學策略、科學本質與認識論、IB Physics Teacher Education"
            data-phone="02-76543210"
@@ -246,7 +246,7 @@
   const titleEl = document.getElementById('m-title');
   const infoEl = document.getElementById('m-info');
   const actionsEl = document.getElementById('m-actions');
-  const bodyEl = document.querySelector('.modal__body'); // 內容可捲動區
+  const bodyEl = modal.querySelector('.modal__body'); // 內容可滾容器（注意抓 modal 內的）
 
   const label = {
     degree:'最高學歷：',
@@ -257,6 +257,21 @@
     email:'信箱：',
     website:'個人網站：'
   };
+
+  // 真·滾動鎖（記住捲動位置並固定 body）
+  let _scrollY = 0;
+  function lockBodyScroll(){
+    _scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.documentElement.style.scrollBehavior = 'auto'; // 避免復位有平滑延遲
+    document.body.style.setProperty('--scroll-lock', `-${_scrollY}px`);
+    document.body.classList.add('no-scroll');
+  }
+  function unlockBodyScroll(){
+    document.body.classList.remove('no-scroll');
+    document.body.style.removeProperty('--scroll-lock');
+    window.scrollTo(0, _scrollY);
+    document.documentElement.style.scrollBehavior = '';
+  }
 
   function openModalFromCard(card){
     const data = {
@@ -272,12 +287,12 @@
       photo:card.dataset.photo || card.querySelector('img')?.src || ''
     };
 
+    // 塞資料
     imgEl.src = data.photo;
     imgEl.alt = data.name ? data.name + ' 的照片' : 'Profile photo';
     nameEl.textContent = data.name;
-    nameMobileEl.textContent = data.name;
+    if (nameMobileEl) nameMobileEl.textContent = data.name;
     titleEl.textContent = data.title;
-
     infoEl.innerHTML = '';
     actionsEl.innerHTML = '';
 
@@ -303,16 +318,20 @@
       infoEl.appendChild(p);
     });
 
+    // 手機顯示頂欄名稱
     if (window.matchMedia('(max-width: 720px)').matches) {
-      topbar.style.display = 'flex';
+      if (topbar) topbar.style.display = 'flex';
     } else {
-      topbar.style.display = 'none';
+      if (topbar) topbar.style.display = 'none';
     }
 
+    // 打開
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden','false');
-    document.body.classList.add('no-scroll');
-    if (bodyEl) bodyEl.scrollTop = 0; // 開啟時捲到最上面（修 iOS 殘留捲動）
+    lockBodyScroll();
+
+    // 重設內容捲動位置
+    if (bodyEl) bodyEl.scrollTop = 0;
 
     document.addEventListener('keydown', escToClose);
   }
@@ -320,25 +339,27 @@
   function closeModal(){
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden','true');
-    document.body.classList.remove('no-scroll');
+    unlockBodyScroll();
     document.removeEventListener('keydown', escToClose);
   }
 
   function escToClose(e){ if(e.key==='Escape') closeModal(); }
 
-  // 點背景關閉（避免點在面板內容上就關閉）
-  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
-
-  // iOS：阻擋在背景層的觸控滾動，避免背景跟著捲
-  modal.addEventListener('touchmove', (e) => {
-    if (e.target === modal) e.preventDefault();
-  }, { passive: false });
-
+  // 點背景關閉（點到 panel 內不關）
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal();
+  });
+  // 面板內阻止冒泡
+  panel.addEventListener('click', e => e.stopPropagation());
   // 關閉鈕
   closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
 
-  // 防止面板內部點擊冒泡到背景
-  panel.addEventListener('click', e => e.stopPropagation());
+  // iOS：只攔背景層的觸控滾動，放行面板內
+  modal.addEventListener('touchmove', (e) => {
+    if (!e.target.closest('.modal__panel')) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   // 綁定所有可點卡片
   const clickableCards = document.querySelectorAll('.person-card.profile');
@@ -353,6 +374,7 @@
   });
 })();
 </script>
+
 
 </body>
 </html>
