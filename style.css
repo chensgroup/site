@@ -260,5 +260,5 @@ footer{
     min-width:0;
   }
   /* 讓面板統一滾動（若要只有右側滾，把這行改為 overflow:auto） */
-  .modal__body{ overflow:auto; }
+  .modal__body{ overflow:visible; }
 }
