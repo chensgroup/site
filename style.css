@@ -262,3 +262,32 @@ footer{
   /* 讓面板統一滾動（若要只有右側滾，把這行改為 overflow:auto） */
   .modal__body{ overflow:visible; }
 }
+
+/* === Desktop: scroll only the right content, not the whole panel === */
+@media (min-width: 721px){
+  /* 外層覆蓋層不滾，避免雙捲軸搶焦點 */
+  .modal{ overflow: hidden; }
+
+  /* 面板高度卡在視口 90vh，自己不滾 */
+  .modal__panel{
+    max-height: 90vh;
+    margin: 5vh auto;
+    overflow: hidden;
+    /* 防止 grid 把右欄撐死，確保可出現捲軸 */
+    align-items: start;
+  }
+
+  /* grid 子項要能縮，否則不會出現捲軸 */
+  .modal__photo,
+  .modal__body{
+    min-height: 0;
+    min-width: 0;
+    align-self: start;
+  }
+
+  /* 只讓右側內容滾；高度 = 面板高 - 面板上下 padding(1.5rem*2) */
+  .modal__body{
+    max-height: calc(90vh - 3rem);
+    overflow: auto;
+  }
+}
