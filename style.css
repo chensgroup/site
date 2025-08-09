@@ -57,7 +57,7 @@ nav a:hover {
 /* 主內容區 */
 main {
   max-width: 1100px;
-  margin: auto;
+  margin: 0 auto;
   padding: 2rem;
 }
 
@@ -69,38 +69,49 @@ main {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-/* 圖片格子 */
+/* 每排三個人 */
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 欄 */
   gap: 2rem;
   justify-items: center;
-  margin-top: 2rem;
+  align-items: start;
+  padding: 2rem 0;
 }
 
+/* 卡片統一寬度，避免文字換行造成大小不一 */
 .person-card {
+  width: 220px;
   text-align: center;
-  max-width: 180px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* 圖片固定比例、裁切置中，看起來整齊 */
 .person-card img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 4/5;      /* 視覺上接近大頭照比例 */
+  object-fit: cover;       /* 超出就裁切 */
   border-radius: 12px;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.person-card:hover img {
-  transform: scale(1.05);
+.person-card img:hover {
+  transform: scale(1.04);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
-.person-card p {
-  margin: 0.3rem 0;
-  font-size: 0.95rem;
+/* 中英行距微調 */
+.lang-zh, .lang-en {
+  margin: 0.35em 0;
+  line-height: 1.4;
+}
+
+/* 響應式：較窄時降到 2 欄與 1 欄 */
+@media (max-width: 900px) {
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .photo-grid { grid-template-columns: 1fr; }
 }
 
 /* 頁尾 */
