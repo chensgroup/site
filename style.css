@@ -140,3 +140,77 @@ body main .photo-grid .person-card {
   max-width: 220px;
   text-align: center;
 }
+
+/* 彈窗背景 */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.5);
+}
+
+/* 彈窗內容 */
+.modal__panel {
+  position: relative;
+  width: min(900px, 92vw);
+  margin: 6vh auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.25rem;
+  animation: modalFadeIn 0.25s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* 左邊照片 */
+.modal__photo img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 右邊文字 */
+.modal__body h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.4rem;
+}
+.modal__subtitle {
+  margin: 0 0 0.75rem 0;
+  color: #555;
+  font-weight: 600;
+}
+.modal__info p { margin: 0.25rem 0; }
+.modal__info strong { color: #1f3d7a; } /* 藍系細節 */
+
+.modal__actions {
+  margin-top: 1rem;
+}
+
+/* 關閉按鈕 */
+.modal__close {
+  position: absolute;
+  top: 10px; right: 12px;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+  border: none;
+  background: transparent;
+}
+.modal__close:hover { color: #000; }
+
+/* 小螢幕改縱向排版 */
+@media (max-width: 720px) {
+  .modal__panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
