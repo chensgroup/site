@@ -30,7 +30,7 @@ body.no-scroll{
 
 /* ===== Header / Nav ===== */
 header{
-  background:linear-gradient(135deg, var(--blue), #6f3381);
+  background:linear-gradient(120deg, var(--blue), #6f3381);
   color:#fff;
   padding:2rem 1.5rem;
   text-align:center;
