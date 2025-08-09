@@ -10,9 +10,9 @@ body {
   line-height: 1.6;
 }
 
-/* 頁首 */
+/* 頁首(原007BFF) */
 header {
-  background: linear-gradient(135deg, #007BFF, #0056b3);
+  background: linear-gradient(135deg, #6f3381, #0056b3);
   color: white;
   padding: 2rem 1.5rem;
   text-align: center;
