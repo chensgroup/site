@@ -123,3 +123,20 @@ footer {
   color: #555;
   border-top: 1px solid #ddd;
 }
+
+/* 強制三欄：用更高選擇器 + !important 壓過舊規則 */
+body main .photo-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 2rem !important;
+  justify-items: center !important;
+  align-items: start !important;
+  padding: 2rem 0 !important;
+}
+
+/* 卡片不要佔滿整行，避免外部樣式把它變 100% 寬 */
+body main .photo-grid .person-card {
+  width: auto !important;
+  max-width: 220px;
+  text-align: center;
+}
