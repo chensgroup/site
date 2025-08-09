@@ -299,3 +299,22 @@ footer{
     background: #fff;                /* 留白更自然 */
   }
 }
+
+/* === Desktop modal must scroll === */
+@media (min-width: 721px){
+  /* 讓覆蓋層本身可以捲動（body 已被鎖住） */
+  .modal{
+    overflow: auto;
+  }
+
+  /* 限制面板高度在視口內；內容超出時由內層捲動 */
+  .modal__panel{
+    max-height: calc(100vh - 12vh); /* 對應上方/下方各 6vh 的留白 */
+    overflow: hidden;                /* 避免面板本身出現雙捲軸 */
+  }
+
+  /* 讓右側內容區在桌機也能捲動 */
+  .modal__body{
+    overflow: auto;
+  }
+}
