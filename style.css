@@ -214,3 +214,67 @@ body main .photo-grid .person-card {
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* 手機：卡片間距加大、字變小、只顯示中文行 */
+@media (max-width: 560px) {
+  .photo-grid {
+    grid-template-columns: 1fr !important;  /* 一欄 */
+    gap: 1.2rem !important;
+    padding: 1rem 0 !important;
+  }
+  .person-card { width: min(92vw, 420px); margin: 0 auto; }
+  .person-card img { border-radius: 14px; }
+  .person-card p { font-size: 0.95rem; line-height: 1.35; margin: 0.25rem 0; }
+  .lang-en { display: none; }               /* 中文頁就隱藏英文，乾淨許多 */
+}
+
+/* 禁止背景滾動時用 */
+body.no-scroll { overflow: hidden; }
+
+/* 手機：彈窗全螢幕工作表風格 */
+@media (max-width: 720px) {
+  .modal { background: rgba(0,0,0,0.65); }
+  .modal__panel {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    padding: 0;
+    overflow: hidden;
+  }
+  /* 置頂欄：名稱＋關閉 */
+  .modal__topbar {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 1;
+  }
+  .modal__close { position: static; font-size: 1.5rem; margin-left: auto; }
+
+  /* 照片佔上半部，置中裁切 */
+  .modal__photo { padding: 0; }
+  .modal__photo img {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+  }
+
+  /* 內容可捲動 */
+  .modal__body {
+    padding: 1rem 1.1rem 1.5rem;
+    overflow: auto;
+  }
+  .modal__body h2 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+  .modal__subtitle { margin-bottom: 0.75rem; color: #555; }
+  .modal__info p { margin: 0.4rem 0; line-height: 1.5; }
+}
