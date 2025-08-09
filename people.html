@@ -5,117 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chen's Group</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* 版面寬度與標題 */
-    main { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
-    h2 { margin-top: 0; }
-
-    /* 成員格子：桌機三欄 */
-    .photo-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:2rem;
-      justify-items:center;
-      align-items:start;
-    }
-    .person-card{ width:220px; text-align:center; cursor:default; }
-    .person-card img{
-      width:100%;
-      aspect-ratio:4/5;
-      object-fit:cover;
-      border-radius:12px;
-      transition:transform .3s ease, box-shadow .3s ease;
-      box-shadow:0 4px 12px rgba(0,0,0,.1);
-    }
-    .person-card:hover img{ transform:scale(1.04); box-shadow:0 6px 16px rgba(0,0,0,.15); }
-    .person-card p{ margin:.35rem 0; line-height:1.4; }
-
-    /* 可點的卡片 */
-    .person-card.profile{ cursor:pointer; }
-
-    /* 平板：兩欄 */
-    @media (max-width: 900px){
-      .photo-grid{ grid-template-columns:repeat(2,1fr); }
-    }
-    /* 手機：一欄、隱藏英文行讓畫面乾淨 */
-    @media (max-width: 560px){
-      .photo-grid{ grid-template-columns:1fr; gap:1.2rem; }
-      .person-card{ width:min(92vw,420px); margin:0 auto; }
-      .lang-en{ display:none; }
-    }
-
-    /* 彈窗背景 */
-    .modal{
-      display:none;
-      position:fixed;
-      inset:0;
-      z-index:1000;
-      background:rgba(0,0,0,.5);
-    }
-    /* 彈窗面板：桌機左右欄 */
-    .modal__panel{
-      position:relative;
-      width:min(900px,92vw);
-      margin:6vh auto;
-      background:#fff;
-      border-radius:12px;
-      padding:1.5rem;
-      display:grid;
-      grid-template-columns:260px 1fr;
-      gap:1.25rem;
-      animation:fadeIn .25s ease;
-      box-shadow:0 10px 30px rgba(0,0,0,.2);
-    }
-    .modal__photo img{
-      width:100%;
-      aspect-ratio:4/5;
-      object-fit:cover;
-      border-radius:10px;
-      display:block;
-    }
-    .modal__body h2{ margin:.2rem 0 .25rem 0; font-size:1.4rem; }
-    .modal__subtitle{ margin:0 0 .75rem 0; color:#555; font-weight:600; }
-    .modal__info p{ margin:.35rem 0; line-height:1.55; }
-    .modal__info strong{ color:#1f3d7a; }
-
-    .modal__close{
-      position:absolute;
-      right:12px; top:10px;
-      font-size:1.8rem;
-      line-height:1;
-      border:none;
-      background:transparent;
-      color:#666;
-      cursor:pointer;
-    }
-    .modal__close:hover{ color:#000; }
-
-    @keyframes fadeIn{ from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);} }
-
-    /* 手機：全螢幕工作表風格，上圖下文，置頂欄顯示姓名與關閉 */
-    @media (max-width: 720px){
-      .modal{ background:rgba(0,0,0,.65); }
-      .modal__panel{
-        width:100vw; height:100vh; margin:0; border-radius:0; padding:0;
-        grid-template-columns:1fr; grid-template-rows:auto auto 1fr;
-        overflow:hidden;
-      }
-      .modal__topbar{
-        position:sticky; top:0;
-        background:#fff; padding:.9rem 1rem;
-        border-bottom:1px solid #eee;
-        display:flex; align-items:center; gap:.75rem; z-index:1;
-      }
-      .modal__topbar .name{ font-weight:600; }
-      .modal__close{ position:static; font-size:1.5rem; margin-left:auto; }
-      .modal__photo img{ width:100%; height:40vh; border-radius:0; object-fit:cover; }
-      .modal__body{ padding:1rem 1.1rem 1.5rem; overflow:auto; }
-      .modal__body h2{ font-size:1.25rem; }
-    }
-
-    /* 開啟彈窗時鎖住背景滾動 */
-    body.no-scroll{ overflow:hidden; }
-  </style>
 </head>
 <body>
   <header>
@@ -134,40 +23,41 @@
     <h2>成員介紹</h2>
 
     <div class="photo-grid">
-      <!-- 教授：可點開 -->
+      <!-- 教授（可點開） -->
       <div class="person-card profile" tabindex="0"
            data-name="陳教授"
            data-title="合聘副教授"
-           data-degree="國立臺灣大學博士"
-           data-office="S711但是基本上不在"
+           data-degree="國立臺灣大學 物理系博士\n國立臺灣大學 物理系碩士\n國立臺灣師範大學 地球科學系學士"
+           data-office="S711"
            data-fields="奈米光學, 物理教學, 數理資優教育"
-           data-expertise="臺大物理學博士，一篇影響指數19.0的國際期刊(SCI) 論文，2013年刊登至今被引用超過1,600次，超過11%是近兩年內引用，是同領域論文引用平均數的120倍，下載超過38,000次，獲選2014超穎材料研究必讀的精選重要論文。另有一篇論文被美國科學促進會(AAAS)等超過30家國際媒體報導[相關報導]。專長奈米光電子學、數理資優教育。同時是長號手、管樂團指揮。曾任教國立臺灣大學物理學系，現任教於國立臺灣師範大學師資培育學院及物理學系，同時擔任臺師大物理雙語課程與國際物理教育(IBDP Physics)國際文憑教師培育(IBEC)協調員及授課教師。110年榮獲臺師大教學優良獎，113年度探究式科學雙語教學論文榮獲教育部領域教材教法研究學術論文獎。2025年與牛津大學Ernesto Macaro共同發表EMI專書論文。"
+           data-expertise="臺大物理學博士；2013 年 SCI 論文被引用超過 1,600 次；專長奈米光電子學、數理資優教育；110 年臺師大教學優良獎；113 年教育部學術論文獎；2025 與 Ernesto Macaro 發表 EMI 專書論文。"
+           data-experience="光電及奈米科學與技術實驗室（PNSTL）\n中央研究院天文暨天文物理研究所（SMA / ALMA）"
            data-phone="02-76543210"
            data-email="chens@uuuu.edu.tw"
            data-website="http://chen.blogspot.com/"
+           data-cv="https://example.com/cv.pdf"
            data-photo="images/professor.png">
         <img src="images/professor.png" alt="Prof. Chen" />
         <p class="lang-zh"><strong>陳教授</strong><br>實驗室主持人</p>
         <p class="lang-en"><strong>Prof. Chen</strong><br>Lab Director</p>
       </div>
 
-      <!-- 王小明：示範也可點 -->
+      <!-- 王小明（可點開，示範） -->
       <div class="person-card profile" tabindex="0"
            data-name="王小明"
-           data-title="免費勞工"
-           data-degree="國立臺灣沒有大學畢業"
-           data-office="應該都在本部"
-           data-fields="吃飯、睡覺、打咚咚"
-           data-expertise="如何吃飽、睡好、I'm fine thank you and you"
-           data-phone="0998-765-432"
-           data-email="Wang@uuuu.edu.tw"
+           data-title="研究生"
+           data-degree="國立範例大學 物理系學士"
+           data-fields="量子資訊、計算物理"
+           data-expertise="數值模擬、資料視覺化"
+           data-experience="專題研究：拓樸量子計算"
+           data-email="wang@uuuu.edu.tw"
            data-photo="images/member1.png">
         <img src="images/member1.png" alt="王小明 / Wang Xiaoming" />
-        <p class="lang-zh"><strong>王小明</strong><br>菸酒生 (2024-)</p>
+        <p class="lang-zh"><strong>王小明</strong><br>研究生 (2024-)</p>
         <p class="lang-en"><strong>Wang Xiaoming</strong><br>Graduate Student</p>
       </div>
 
-      <!-- 其他成員：先維持不可點，之後要開啟就加 profile 與 data-* -->
+      <!-- 其餘成員（先不開啟彈窗；之後要能點只要加 .profile 與 data-* 屬性） -->
       <div class="person-card">
         <img src="images/member2.png" alt="林小白 / Lin Xiaobai" />
         <p class="lang-zh"><strong>林小白</strong><br>網站維護</p>
@@ -209,12 +99,13 @@
   <!-- 通用彈窗 -->
   <div class="modal" id="profile-modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal__panel">
-      <!-- 手機置頂列 -->
+      <!-- 手機置頂列（手機顯示、桌機隱藏：由 CSS 控制） -->
       <div class="modal__topbar" style="display:none;">
         <div class="name" id="m-name-mobile"></div>
         <button class="modal__close" aria-label="關閉">&times;</button>
       </div>
 
+      <!-- 桌機右上角關閉（手機會隱藏：由 CSS 控制） -->
       <button class="modal__close" aria-label="關閉" title="關閉">&times;</button>
 
       <div class="modal__photo">
@@ -233,148 +124,163 @@
     <p>© 2025 Chen’s Group</p>
   </footer>
 
-<script>
-(() => {
-  const modal = document.getElementById('profile-modal');
-  const panel = modal.querySelector('.modal__panel');
-  const closeBtns = modal.querySelectorAll('.modal__close');
-  const topbar = modal.querySelector('.modal__topbar');
+  <script>
+  (() => {
+    const modal = document.getElementById('profile-modal');
+    const panel = modal.querySelector('.modal__panel');
+    const closeBtns = modal.querySelectorAll('.modal__close');
+    const topbar = modal.querySelector('.modal__topbar');
 
-  const imgEl = document.getElementById('m-photo');
-  const nameEl = document.getElementById('m-name');
-  const nameMobileEl = document.getElementById('m-name-mobile');
-  const titleEl = document.getElementById('m-title');
-  const infoEl = document.getElementById('m-info');
-  const actionsEl = document.getElementById('m-actions');
-  const bodyEl = modal.querySelector('.modal__body'); // 內容可滾容器（注意抓 modal 內的）
+    const imgEl = document.getElementById('m-photo');
+    const nameEl = document.getElementById('m-name');
+    const nameMobileEl = document.getElementById('m-name-mobile');
+    const titleEl = document.getElementById('m-title');
+    const infoEl = document.getElementById('m-info');
+    const actionsEl = document.getElementById('m-actions');
+    const bodyEl = modal.querySelector('.modal__body');
 
-  const label = {
-    degree:'最高學歷：',
-    office:'Office Hour：',
-    fields:'研究領域：',
-    expertise:'研究專長：',
-    phone:'電話：',
-    email:'信箱：',
-    website:'個人網站：'
-  };
-
-  // 真·滾動鎖（記住捲動位置並固定 body）
-  let _scrollY = 0;
-  function lockBodyScroll(){
-    _scrollY = window.scrollY || document.documentElement.scrollTop || 0;
-    document.documentElement.style.scrollBehavior = 'auto'; // 避免復位有平滑延遲
-    document.body.style.setProperty('--scroll-lock', `-${_scrollY}px`);
-    document.body.classList.add('no-scroll');
-  }
-  function unlockBodyScroll(){
-    document.body.classList.remove('no-scroll');
-    document.body.style.removeProperty('--scroll-lock');
-    window.scrollTo(0, _scrollY);
-    document.documentElement.style.scrollBehavior = '';
-  }
-
-  function openModalFromCard(card){
-    const data = {
-      name:card.dataset.name || '',
-      title:card.dataset.title || '',
-      degree:card.dataset.degree || '',
-      office:card.dataset.office || '',
-      fields:card.dataset.fields || '',
-      expertise:card.dataset.expertise || '',
-      phone:card.dataset.phone || '',
-      email:card.dataset.email || '',
-      website:card.dataset.website || '',
-      photo:card.dataset.photo || card.querySelector('img')?.src || ''
+    const label = {
+      degree: '最高學歷：',
+      office: 'Office Hour：',
+      fields: '研究領域：',
+      expertise: '研究專長：',
+      experience: '研究經歷：',
+      phone: '電話：',
+      email: '信箱：',
+      website: '個人網站：',
+      cv: '簡歷：'
     };
 
-    // 塞資料
-    imgEl.src = data.photo;
-    imgEl.alt = data.name ? data.name + ' 的照片' : 'Profile photo';
-    nameEl.textContent = data.name;
-    if (nameMobileEl) nameMobileEl.textContent = data.name;
-    titleEl.textContent = data.title;
-    infoEl.innerHTML = '';
-    actionsEl.innerHTML = '';
-
-    const rows = [
-      ['degree', data.degree],
-      ['office', data.office],
-      ['fields', data.fields],
-      ['expertise', data.expertise],
-      ['phone', data.phone],
-      ['email', data.email],
-      ['website', data.website],
-    ];
-    rows.forEach(([key,val]) => {
-      if(!val) return;
-      const p = document.createElement('p');
-      if(key==='email'){
-        p.innerHTML = `<strong>${label[key]}</strong><a href="mailto:${val}">${val}</a>`;
-      }else if(key==='website'){
-        p.innerHTML = `<strong>${label[key]}</strong><a href="${val}" target="_blank" rel="noopener">${val}</a>`;
-      }else{
-        p.innerHTML = `<strong>${label[key]}</strong>${val}`;
-      }
-      infoEl.appendChild(p);
-    });
-
-    // 手機顯示頂欄名稱
-    if (window.matchMedia('(max-width: 720px)').matches) {
-      if (topbar) topbar.style.display = 'flex';
-    } else {
-      if (topbar) topbar.style.display = 'none';
+    // 真·滾動鎖（記住捲動位置並固定 body）
+    let _scrollY = 0;
+    function lockBodyScroll(){
+      _scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.setProperty('--scroll-lock', `-${_scrollY}px`);
+      document.body.classList.add('no-scroll');
+    }
+    function unlockBodyScroll(){
+      document.body.classList.remove('no-scroll');
+      document.body.style.removeProperty('--scroll-lock');
+      window.scrollTo(0, _scrollY);
+      document.documentElement.style.scrollBehavior = '';
     }
 
-    // 打開
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden','false');
-    lockBodyScroll();
-
-    // 重設內容捲動位置
-    if (bodyEl) bodyEl.scrollTop = 0;
-
-    document.addEventListener('keydown', escToClose);
-  }
-
-  function closeModal(){
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden','true');
-    unlockBodyScroll();
-    document.removeEventListener('keydown', escToClose);
-  }
-
-  function escToClose(e){ if(e.key==='Escape') closeModal(); }
-
-  // 點背景關閉（點到 panel 內不關）
-  modal.addEventListener('click', e => {
-    if (e.target === modal) closeModal();
-  });
-  // 面板內阻止冒泡
-  panel.addEventListener('click', e => e.stopPropagation());
-  // 關閉鈕
-  closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
-
-  // iOS：只攔背景層的觸控滾動，放行面板內
-  modal.addEventListener('touchmove', (e) => {
-    if (!e.target.closest('.modal__panel')) {
-      e.preventDefault();
+    // 將屬性值中的 \n 轉成 <br>，讓你在 data-* 可用換行符
+    function withLineBreaks(str){
+      return (str || '').replace(/\n/g, '<br>');
     }
-  }, { passive: false });
 
-  // 綁定所有可點卡片
-  const clickableCards = document.querySelectorAll('.person-card.profile');
-  clickableCards.forEach(card => {
-    card.addEventListener('click', () => openModalFromCard(card));
-    card.addEventListener('keydown', e => {
-      if(e.key==='Enter' || e.key===' '){
-        e.preventDefault();
-        openModalFromCard(card);
+    function openModalFromCard(card){
+      const data = {
+        name: card.dataset.name || '',
+        title: card.dataset.title || '',
+        degree: card.dataset.degree || '',
+        office: card.dataset.office || '',
+        fields: card.dataset.fields || '',
+        expertise: card.dataset.expertise || '',
+        experience: card.dataset.experience || '',
+        phone: card.dataset.phone || '',
+        email: card.dataset.email || '',
+        website: card.dataset.website || '',
+        cv: card.dataset.cv || '',
+        photo: card.dataset.photo || card.querySelector('img')?.src || ''
+      };
+
+      // 基本資料
+      imgEl.src = data.photo;
+      imgEl.alt = data.name ? data.name + ' 的照片' : 'Profile photo';
+      nameEl.textContent = data.name;
+      if (nameMobileEl) nameMobileEl.textContent = data.name;
+      titleEl.textContent = data.title;
+
+      // 清空、塞欄位
+      infoEl.innerHTML = '';
+      actionsEl.innerHTML = '';
+
+      const rows = [
+        ['degree', data.degree],
+        ['office', data.office],
+        ['fields', data.fields],
+        ['expertise', data.expertise],
+        ['experience', data.experience],
+        ['phone', data.phone],
+        ['email', data.email],
+        ['website', data.website],
+        ['cv', data.cv],
+      ];
+
+      rows.forEach(([key, val]) => {
+        if (!val) return;
+        const p = document.createElement('p');
+
+        // 轉換換行
+        const content = withLineBreaks(val);
+
+        if (key === 'email') {
+          p.innerHTML = `<strong>${label[key]}</strong><a href="mailto:${content}">${content}</a>`;
+        } else if (key === 'website' || key === 'cv') {
+          if (/^https?:\/\//i.test(content)) {
+            p.innerHTML = `<strong>${label[key]}</strong><a href="${content}" target="_blank" rel="noopener">${content}</a>`;
+          } else {
+            p.innerHTML = `<strong>${label[key]}</strong>${content}`;
+          }
+        } else {
+          p.innerHTML = `<strong>${label[key]}</strong>${content}`;
+        }
+        infoEl.appendChild(p);
+      });
+
+      // 手機顯示置頂列
+      if (window.matchMedia('(max-width: 720px)').matches) {
+        if (topbar) topbar.style.display = 'flex';
+      } else {
+        if (topbar) topbar.style.display = 'none';
       }
+
+      // 開啟
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden','false');
+      lockBodyScroll();
+
+      // 重設內容捲動位置
+      if (bodyEl) bodyEl.scrollTop = 0;
+
+      document.addEventListener('keydown', escToClose);
+    }
+
+    function closeModal(){
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+      unlockBodyScroll();
+      document.removeEventListener('keydown', escToClose);
+    }
+    function escToClose(e){ if (e.key === 'Escape') closeModal(); }
+
+    // 背景點擊關閉
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    // 面板內阻止冒泡
+    panel.addEventListener('click', e => e.stopPropagation());
+    // 關閉按鈕
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+    // iOS：只攔背景層觸控滾動，放行面板內
+    modal.addEventListener('touchmove', (e) => {
+      if (!e.target.closest('.modal__panel')) e.preventDefault();
+    }, { passive: false });
+
+    // 綁定所有可點卡片
+    const clickableCards = document.querySelectorAll('.person-card.profile');
+    clickableCards.forEach(card => {
+      card.addEventListener('click', () => openModalFromCard(card));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModalFromCard(card);
+        }
+      });
     });
-  });
-})();
-</script>
-
-
+  })();
+  </script>
 </body>
 </html>
