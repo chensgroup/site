@@ -238,3 +238,40 @@ footer{
 @media (min-width:721px){
   .modal__topbar{ display:none !important; }
 }
+
+/* ===== 響應式（重置為更友善的手機斷點） ===== */
+
+/* 桌機 3 欄：保持不變 */
+@media (min-width: 901px){
+  .photo-grid{ grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+/* 平板與大手機：2 欄 */
+@media (min-width: 561px) and (max-width: 900px){
+  .photo-grid{ grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* 大手機（直立顯示）：2 欄 */
+@media (min-width: 401px) and (max-width: 560px){
+  .photo-grid{
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.2rem !important;
+    padding: 1rem 0 !important;
+  }
+  .person-card{ width: 100% !important; max-width: 260px; }
+}
+
+/* 小手機：1 欄 */
+@media (max-width: 400px){
+  .photo-grid{
+    grid-template-columns: 1fr !important;
+    gap: 1.1rem !important;
+    padding: 1rem 0 !important;
+  }
+  .person-card{ width: min(92vw, 420px) !important; margin: 0 auto; }
+}
+
+/* 手機中文字顯示，英文行隱藏（照原本邏輯保留） */
+@media (max-width: 560px){
+  .lang-en{ display: none !important; }
+}
