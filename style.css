@@ -275,3 +275,27 @@ footer{
 @media (max-width: 560px){
   .lang-en{ display: none !important; }
 }
+
+/* === iPhone 底部緩衝 + 內容可滑到最底（含安全區） === */
+@media (max-width: 720px){
+  .modal__body{
+    /* 多留 4 行的空白，避免放手被底部工具列「彈回」 */
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px) + 4rem) !important;
+    scroll-padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 4rem);
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y; /* 明確允許垂直捲動 */
+  }
+  .modal__body::after{
+    content:"";
+    display:block;
+    height: calc(env(safe-area-inset-bottom, 0px) + 4rem);
+  }
+
+  /* 手機照片：高度固定、整張縮到版面內（不裁切） */
+  .modal__photo img{
+    height: 38dvh !important;       /* 需要更高/更矮可調 36~42dvh */
+    object-fit: contain !important;  /* 顯示完整 */
+    background: #fff;                /* 留白更自然 */
+  }
+}
