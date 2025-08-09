@@ -278,3 +278,17 @@ body.no-scroll { overflow: hidden; }
   .modal__subtitle { margin-bottom: 0.75rem; color: #555; }
   .modal__info p { margin: 0.4rem 0; line-height: 1.5; }
 }
+
+/* 手機：隱藏桌機用的右上角 X */
+@media (max-width: 720px) {
+  .modal__panel > .modal__close {
+    display: none;
+  }
+}
+
+/* 桌機：隱藏手機置頂列 */
+@media (min-width: 721px) {
+  .modal__topbar {
+    display: none !important;
+  }
+}
