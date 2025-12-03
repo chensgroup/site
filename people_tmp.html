@@ -20,7 +20,7 @@
   </header>
 
   <main>
-    <h2>成員介紹<span style="font-size: 14px; vertical-align: middle;">點擊圖片以檢視詳細資訊</span></h2>
+    <h2>成員介紹<span style="font-size: 16px; vertical-align: middle;">  (點擊圖片以檢視詳細資訊)</span></h2>
 
     <div class="photo-grid">
       <!-- 教授（可點開） -->
@@ -125,6 +125,20 @@
   </footer>
 
   <script>
+  fetch('https://api.github.com/repos/bravexample/siteBackup/contents/members')
+    .then(response => response.json())
+    .then(data => {
+      // 'data' is an array of files/folders
+      data.forEach(item => {
+        if (item.type === 'dir') {
+          console.log('Folder:', item.name);
+        } else {
+          console.log('File:', item.name);
+        }
+      });
+    })
+    .catch(error => console.error('Error:', error));
+
   (() => {
     const modal = document.getElementById('profile-modal');
     const panel = modal.querySelector('.modal__panel');

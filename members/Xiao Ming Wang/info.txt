@@ -1,0 +1,8 @@
+name=王小明
+labTitle=研究生
+jobTitle=研究生
+degree=國立範例大學 物理系學士
+fields=量子資訊、計算物理
+expertise=數值模擬、資料視覺化
+experience=專題研究：拓樸量子計算
+email=wang@uuuu.edu.tw
