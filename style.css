@@ -274,13 +274,6 @@ footer{
 }
 
 /* ===== 資源頁圖片 ===== */
-@media (min-width: 561px) {
-	.resourceImg{
-		width: 60vw;
-	}
-}
-@media (max-width: 560px) {
-	.resourceImg{
-		width: 80vw;
-	}
+.resourceImg{
+	width: 90vw;
 }
