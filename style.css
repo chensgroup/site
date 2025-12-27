@@ -244,24 +244,6 @@ footer{
   .modal__topbar{ display:none !important; }
 }
 
-/* ===== 桌機彈窗：整個面板可捲動，不卡住 ===== */
-@media (min-width:721px){
-  .modal{ overflow:auto; }              /* 覆蓋層可滾（body 已鎖） */
-  .modal__panel{
-    max-height:90vh;                    /* 面板限制在視口內 */
-    margin:5vh auto;                    /* 上下留白 */
-    overflow:auto;                      /* 面板本身可滾 */
-  }
-  /* Grid 子項要能縮，才會出現捲軸 */
-  .modal__photo,
-  .modal__body{
-    min-height:0;
-    min-width:0;
-  }
-  /* 讓面板統一滾動（若要只有右側滾，把這行改為 overflow:auto） */
-  .modal__body{ overflow:visible; }
-}
-
 /* === Desktop: scroll only the right content, not the whole panel === */
 @media (min-width: 721px){
   /* 外層覆蓋層不滾，避免雙捲軸搶焦點 */
@@ -292,12 +274,12 @@ footer{
 }
 
 /* ===== 資源頁圖片 ===== */
-@media (min-width: 900px) {
+@media (min-width: 561px) {
 	.resourceImg{
 		width: 60vw;
 	}
 }
-@media (min-width: 560px) {
+@media (max-width: 560px) {
 	.resourceImg{
 		width: 80vw;
 	}
