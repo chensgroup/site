@@ -238,14 +238,11 @@ footer{
   .modal__body h2{ font-size:1.25rem; }
 }
 
-/* ===== 關閉鍵顯示控制：避免同時出現兩顆 X ===== */
-/* 桌機隱藏手機置頂列 */
-@media (min-width:721px){
-  .modal__topbar{ display:none !important; }
-}
-
 /* === Desktop: scroll only the right content, not the whole panel === */
 @media (min-width: 721px){
+  /* 桌機隱藏手機置頂列 */
+  .modal__topbar{ display:none !important; }
+
   /* 外層覆蓋層不滾，避免雙捲軸搶焦點 */
   .modal{ overflow: hidden; }
 
