@@ -35,6 +35,242 @@
       📄 IMRD 是學術論文的基本架構（PDF）
     </a>
   </p>
+
+    <div class="photo-grid">
+      <div class="person-card profile" tabindex="0"
+           data-name="陳育霖"
+           data-title="合聘副教授"
+           data-degree="國立臺灣大學 物理系博士"
+           data-office="S711"
+           data-fields="奈米光學, 物理教學, 數理資優教育"
+           data-expertise="奈米電漿子學、探究式教學、自然科學知識論、探究式物理教師培育"
+           data-experience="光電及奈米科學與技術實驗室（PNSTL）<br> 中央研究院天文暨天文物理研究所（SMA / ALMA）"
+           data-email="chendaneyl@yahoo.com.tw"
+           data-cv="臺大物理學博士，一篇影響指數19.0的國際期刊(SCI) 論文，2013年刊登至今被引用超過1,600次，超過11%是近兩年內引用，是同領域論文引用平均數的120倍，下載超過38,000次，獲選2014超穎材料研究必讀的精選重要論文。另有一篇論文被美國科學促進會(AAAS)等超過30家國際媒體報導[相關報導]。專長奈米光電子學、數理資優教育。同時是長號手、管樂團指揮。曾任教國立臺灣大學物理學系，現任教於國立臺灣師範大學師資培育學院及物理學系，同時擔任臺師大物理雙語課程與國際物理教育(IBDP Physics)國際文憑教師培育(IBEC)協調員及授課教師。110年榮獲臺師大教學優良獎，113年度探究式科學雙語教學論文榮獲教育部領域教材教法研究學術論文獎。2025年與牛津大學Ernesto Macaro共同發表EMI專書論文。"
+           data-photo="members/Yu Lim Chen/image.jpg">
+        <img src="members/Yu Lim Chen/image.jpg" alt="陳育霖 / Yu Lim Chen" />
+        <p class="lang-zh"><strong>陳育霖</strong><br>實驗室主持人</p>
+      </div>
+
+      <div class="person-card profile" tabindex="0"
+           data-name="陳玠同"
+           data-title="國立臺灣師範大學自然領域教學研究中心助理"
+           data-degree="國立臺灣師範大學物理系碩士"
+           data-office="S719"
+           data-fields="物理"
+           data-experience="台北市立內湖國民中學數理資優班教師"
+           data-email="t568@nhjh.tp.edu.tw"
+	   data-phone="(+886)938-663-269"
+           data-photo="members/Jie Tong Chen/image.jpg">
+        <img src="members/Jie Tong Chen/image.jpg" alt="陳玠同 / Jie Tong Chen" />
+        <p class="lang-zh"><strong>陳玠同</strong><br>國立臺灣師範大學<br>自然領域教學研究中心助理</p>
+      </div>
+
+      <div class="person-card profile" tabindex="0"
+           data-name="陳苡銜"
+           data-title="碩士二年級"
+           data-degree="國立臺灣師範大學 物理學系學士"
+           data-office="S719"
+           data-fields="物理教育、AI在物理上的應用"
+           data-experience="日本九州大學 綜合理工學院 在學中"
+           data-email="nderson104225@gmail.com"
+	   data-phone="(+886)961-577-592"
+           data-photo="members/I Hsien Chen/image.JPG">
+        <img src="members/I Hsien Chen/image.JPG" alt="陳苡銜 / I Hsien Chen" />
+        <p class="lang-zh"><strong>陳苡銜</strong><br>師大物理教育團隊<br>YouTube總編輯</p>
+      </div>
+    </div>
+
+    <h2>前成員<span style="font-size: 14px; vertical-align: middle;"><br>點擊圖片以檢視詳細資訊</span></h2>
+      <h3>等上面的人畢業</h3>
+  </main>
+
+  <!-- 通用彈窗 -->
+  <div class="modal" id="profile-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__panel">
+      <!-- 手機置頂列（手機顯示、桌機隱藏：由 CSS 控制） -->
+      <div class="modal__topbar" style="display:none;">
+        <div class="name" id="m-name-mobile"></div>
+        <button class="modal__close" aria-label="關閉">&times;</button>
+      </div>
+
+      <!-- 桌機右上角關閉（手機會隱藏：由 CSS 控制） -->
+      <button class="modal__close" aria-label="關閉" title="關閉">&times;</button>
+
+      <div class="modal__photo">
+        <img id="m-photo" src="" alt="">
+      </div>
+      <div class="modal__body">
+        <h2 id="m-name"></h2>
+        <div class="modal__subtitle" id="m-title"></div>
+        <div class="modal__info" id="m-info"></div>
+        <div class="modal__actions" id="m-actions"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Chen’s Group</p>
+  </footer>
+
+  <script>
+  (() => {
+    const modal = document.getElementById('profile-modal');
+    const panel = modal.querySelector('.modal__panel');
+    const closeBtns = modal.querySelectorAll('.modal__close');
+    const topbar = modal.querySelector('.modal__topbar');
+
+    const imgEl = document.getElementById('m-photo');
+    const nameEl = document.getElementById('m-name');
+    const nameMobileEl = document.getElementById('m-name-mobile');
+    const titleEl = document.getElementById('m-title');
+    const infoEl = document.getElementById('m-info');
+    const actionsEl = document.getElementById('m-actions');
+    const bodyEl = modal.querySelector('.modal__body');
+
+    const label = {
+      degree: '最高學歷：',
+      office: 'Office：',
+      fields: '研究領域：',
+      expertise: '研究專長：',
+      experience: '研究經歷：',
+      phone: '電話：',
+      email: '信箱：',
+      website: '個人網站：',
+      cv: '簡歷：'
+    };
+
+    // 真·滾動鎖（記住捲動位置並固定 body）
+    let _scrollY = 0;
+    function lockBodyScroll(){
+      _scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.setProperty('--scroll-lock', `-${_scrollY}px`);
+      document.body.classList.add('no-scroll');
+    }
+    function unlockBodyScroll(){
+      document.body.classList.remove('no-scroll');
+      document.body.style.removeProperty('--scroll-lock');
+      window.scrollTo(0, _scrollY);
+      document.documentElement.style.scrollBehavior = '';
+    }
+
+    // 將屬性值中的 \n 轉成 <br>，讓你在 data-* 可用換行符
+    function withLineBreaks(str){
+      return (str || '').replace(/\n/g, '<br>');
+    }
+
+    function openModalFromCard(card){
+      const data = {
+        name: card.dataset.name || '',
+        title: card.dataset.title || '',
+        degree: card.dataset.degree || '',
+        office: card.dataset.office || '',
+        fields: card.dataset.fields || '',
+        expertise: card.dataset.expertise || '',
+        experience: card.dataset.experience || '',
+        phone: card.dataset.phone || '',
+        email: card.dataset.email || '',
+        website: card.dataset.website || '',
+        cv: card.dataset.cv || '',
+        photo: card.dataset.photo || card.querySelector('img')?.src || ''
+      };
+
+      // 基本資料
+      imgEl.src = data.photo;
+      imgEl.alt = data.name ? data.name + ' 的照片' : 'Profile photo';
+      nameEl.textContent = data.name;
+      if (nameMobileEl) nameMobileEl.textContent = data.name;
+      titleEl.textContent = data.title;
+
+      // 清空、塞欄位
+      infoEl.innerHTML = '';
+      actionsEl.innerHTML = '';
+
+      const rows = [
+        ['degree', data.degree],
+        ['office', data.office],
+        ['fields', data.fields],
+        ['expertise', data.expertise],
+        ['experience', data.experience],
+        ['phone', data.phone],
+        ['email', data.email],
+        ['website', data.website],
+        ['cv', data.cv],
+      ];
+
+      rows.forEach(([key, val]) => {
+        if (!val) return;
+        const p = document.createElement('p');
+
+        // 轉換換行
+        const content = withLineBreaks(val);
+
+        if (key === 'email') {
+          p.innerHTML = `<strong>${label[key]}</strong><a href="mailto:${content}">${content}</a>`;
+        } else if (key === 'website' || key === 'cv') {
+          if (/^https?:\/\//i.test(content)) {
+            p.innerHTML = `<strong>${label[key]}</strong><a href="${content}" target="_blank" rel="noopener">${content}</a>`;
+          } else {
+            p.innerHTML = `<strong>${label[key]}</strong>${content}`;
+          }
+        } else {
+          p.innerHTML = `<strong>${label[key]}</strong>${content}`;
+        }
+        infoEl.appendChild(p);
+      });
+
+      // 手機顯示置頂列
+      if (window.matchMedia('(max-width: 720px)').matches) {
+        if (topbar) topbar.style.display = 'flex';
+      } else {
+        if (topbar) topbar.style.display = 'none';
+      }
+
+      // 開啟
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden','false');
+      lockBodyScroll();
+
+      // 重設內容捲動位置
+      if (bodyEl) bodyEl.scrollTop = 0;
+
+      document.addEventListener('keydown', escToClose);
+    }
+
+    function closeModal(){
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+      unlockBodyScroll();
+      document.removeEventListener('keydown', escToClose);
+    }
+    function escToClose(e){ if (e.key === 'Escape') closeModal(); }
+
+    // 背景點擊關閉
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    // 面板內阻止冒泡
+    panel.addEventListener('click', e => e.stopPropagation());
+    // 關閉按鈕
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+    // iOS：只攔背景層觸控滾動，放行面板內
+    modal.addEventListener('touchmove', (e) => {
+      if (!e.target.closest('.modal__panel')) e.preventDefault();
+    }, { passive: false });
+
+    // 綁定所有可點卡片
+    const clickableCards = document.querySelectorAll('.person-card.profile');
+    clickableCards.forEach(card => {
+      card.addEventListener('click', () => openModalFromCard(card));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModalFromCard(card);
+        }
+      });
+    });
+  })();
+  </script>
 </main>
 
 
