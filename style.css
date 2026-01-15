@@ -272,5 +272,9 @@ footer{
 
 /* ===== 資源頁圖片 ===== */
 .resourceImg{
-	width: 75vw;
+  width: 75vw;
+}
+
+.course_button{
+  font-size: 2rem;
 }
