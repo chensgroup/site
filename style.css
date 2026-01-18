@@ -272,7 +272,7 @@ footer{
 
 /* ===== 資源頁圖片 ===== */
 .resourceImg{
-  width: 75vw;
+  width: min(75vw, 825px);
 }
 
 /* CSS */
