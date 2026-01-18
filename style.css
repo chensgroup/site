@@ -319,3 +319,16 @@ footer{
   box-shadow: none;
   transform: translateY(0);
 }
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: fit-content;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
