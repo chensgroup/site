@@ -26,15 +26,8 @@
   <h2>課程資訊<span style="font-size: 14px; vertical-align: middle;"><br>點擊課程以檢視詳細資訊</span></h2>
     <div class="photo-grid">
       <div class="person-card profile" tabindex="0"
-           data-name="陳育霖"
-           data-title="合聘副教授"
-           data-degree="國立臺灣大學 物理系博士"
-           data-office="S711"
-           data-fields="奈米光學, 物理教學, 數理資優教育"
-           data-expertise="奈米電漿子學、探究式教學、自然科學知識論、探究式物理教師培育"
-           data-experience="光電及奈米科學與技術實驗室（PNSTL）<br> 中央研究院天文暨天文物理研究所（SMA / ALMA）"
-           data-email="chendaneyl@yahoo.com.tw"
-           data-cv="臺大物理學博士，一篇影響指數19.0的國際期刊(SCI) 論文，2013年刊登至今被引用超過1,600次，超過11%是近兩年內引用，是同領域論文引用平均數的120倍，下載超過38,000次，獲選2014超穎材料研究必讀的精選重要論文。另有一篇論文被美國科學促進會(AAAS)等超過30家國際媒體報導[相關報導]。專長奈米光電子學、數理資優教育。同時是長號手、管樂團指揮。曾任教國立臺灣大學物理學系，現任教於國立臺灣師範大學師資培育學院及物理學系，同時擔任臺師大物理雙語課程與國際物理教育(IBDP Physics)國際文憑教師培育(IBEC)協調員及授課教師。110年榮獲臺師大教學優良獎，113年度探究式科學雙語教學論文榮獲教育部領域教材教法研究學術論文獎。2025年與牛津大學Ernesto Macaro共同發表EMI專書論文。">
+	   data-name="物理教材教法"
+           data-options="one two three">
         <button class="course-button"><strong>物理教材教法</strong></button>
       </div>
 
@@ -99,9 +92,9 @@
 
       <div class="modal__body">
         <h2 id="m-name"></h2>
-        <div class="modal__subtitle" id="m-title"></div>
+        <!-- div class="modal__subtitle" id="m-title"></div -->
         <div class="modal__info" id="m-info"></div>
-        <div class="modal__actions" id="m-actions"></div>
+        <!-- div class="modal__actions" id="m-actions"></div -->
       </div>
     </div>
   </div>
@@ -119,9 +112,9 @@
 
     const nameEl = document.getElementById('m-name');
     const nameMobileEl = document.getElementById('m-name-mobile');
-    const titleEl = document.getElementById('m-title');
+    // const titleEl = document.getElementById('m-title');
     const infoEl = document.getElementById('m-info');
-    const actionsEl = document.getElementById('m-actions');
+    // const actionsEl = document.getElementById('m-actions');
     const bodyEl = modal.querySelector('.modal__body');
 
     // const label = {
@@ -152,8 +145,8 @@
     }
 
     function openModalFromCard(card){
-      // const data = {
-      //   name: card.dataset.name || '',
+      const data = {
+        name: card.dataset.name || '',
       //   title: card.dataset.title || '',
       //   degree: card.dataset.degree || '',
       //   office: card.dataset.office || '',
@@ -165,17 +158,26 @@
       //   website: card.dataset.website || '',
       //   cv: card.dataset.cv || '',
       //   photo: card.dataset.photo || card.querySelector('img')?.src || ''
-      // };
+        options: card.dataset.options || ''
+      };
 
       // 基本資料
       nameEl.textContent = data.name;
       if (nameMobileEl) nameMobileEl.textContent = data.name;
-      titleEl.textContent = data.title;
+      // titleEl.textContent = data.title;
 
       // 清空、塞欄位
       infoEl.innerHTML = '';
-      actionsEl.innerHTML = '';
+      // actionsEl.innerHTML = '';
 
+      // 建立 select 元素
+      const selectList = document.createElement("select");
+      data.options.split(' ').forEach((v, i) => {
+        const newOpt = new Option(v, i);
+        selectList.add(newOpt);
+      })
+      infoEl.appendChild(selectList);
+      
       // const rows = [
       //   ['degree', data.degree],
       //   ['office', data.office],
@@ -188,26 +190,26 @@
       //   ['cv', data.cv],
       // ];
 
-      rows.forEach(([key, val]) => {
-        if (!val) return;
-        const p = document.createElement('p');
+      // rows.forEach(([key, val]) => {
+      //   if (!val) return;
+      //   const p = document.createElement('p');
 
-        // 轉換換行
-        const content = withLineBreaks(val);
+      //   // 轉換換行
+      //   const content = withLineBreaks(val);
 
-        if (key === 'email') {
-          p.innerHTML = `<strong>${label[key]}</strong><a href="mailto:${content}">${content}</a>`;
-        } else if (key === 'website' || key === 'cv') {
-          if (/^https?:\/\//i.test(content)) {
-            p.innerHTML = `<strong>${label[key]}</strong><a href="${content}" target="_blank" rel="noopener">${content}</a>`;
-          } else {
-            p.innerHTML = `<strong>${label[key]}</strong>${content}`;
-          }
-        } else {
-          p.innerHTML = `<strong>${label[key]}</strong>${content}`;
-        }
-        infoEl.appendChild(p);
-      });
+      //   if (key === 'email') {
+      //     p.innerHTML = `<strong>${label[key]}</strong><a href="mailto:${content}">${content}</a>`;
+      //   } else if (key === 'website' || key === 'cv') {
+      //     if (/^https?:\/\//i.test(content)) {
+      //       p.innerHTML = `<strong>${label[key]}</strong><a href="${content}" target="_blank" rel="noopener">${content}</a>`;
+      //     } else {
+      //       p.innerHTML = `<strong>${label[key]}</strong>${content}`;
+      //     }
+      //   } else {
+      //     p.innerHTML = `<strong>${label[key]}</strong>${content}`;
+      //   }
+      //   infoEl.appendChild(p);
+      // });
 
       // 手機顯示置頂列
       if (window.matchMedia('(max-width: 720px)').matches) {
