@@ -17,6 +17,7 @@
   <a href="course.html">課程</a>
   <a href="resource.html">資源</a>
   <a href="event.html">活動</a>
+  <a href="https://youtube.com/channel/UCCkcgVCncWmGhfgu9elQgjQ?si=ZbwjryW_BgaaabVk">YouTube</a>
   <a href="index_en.html">English</a>
 </nav>
 
@@ -26,33 +27,33 @@
   <h2>課程資訊<span style="font-size: 14px; vertical-align: middle;"><br>點擊課程以檢視詳細資訊</span></h2>
     <div class="photo-grid">
       <div class="person-card profile" tabindex="0"
-	   data-name="物理教材教法"
+           data-name="物理教材教法"
            data-options="one two three">
         <button class="course-button"><strong>物理教材教法</strong></button>
       </div>
 
       <div class="person-card profile" tabindex="0"
            data-name="物理教學實習"
-	   data-options="1 2 3">
+           data-options="1 2 3">
         <button class="course-button"><strong>物理教學實習</strong></button>
       </div>
 
       <div class="person-card profile" tabindex="0"
            data-name="自然領域探究與實作"
-	   data-options="one two three">
+           data-options="one two three">
         <button class="course-button"><strong>自然領域探究與實作</strong></button>
       </div>
 
       <div class="person-card profile" tabindex="0"
            data-name="自然科學領域概論"
-	   data-options="one two three">
+           data-options="one two three">
         <button class="course-button"><strong>自然科學領域概論（小教）</strong></button>
       </div>
     </div>
 
     <h2>舊有課程<span style="font-size: 14px; vertical-align: middle;"><br>點擊課程以檢視詳細資訊</span></h2>
 
-  <h3>課程講義</h3>
+  <h2>課程講義</h2>
   <p>
     <a href="courses/IMRD是學術論文的基本架構.pdf" target="_blank">
       📄 IMRD 是學術論文的基本架構（PDF）
@@ -94,9 +95,7 @@
 
     const nameEl = document.getElementById('m-name');
     const nameMobileEl = document.getElementById('m-name-mobile');
-    // const titleEl = document.getElementById('m-title');
     const infoEl = document.getElementById('m-info');
-    // const actionsEl = document.getElementById('m-actions');
     const bodyEl = modal.querySelector('.modal__body');
 
     // const label = {
@@ -129,28 +128,15 @@
     function openModalFromCard(card){
       const data = {
         name: card.dataset.name || '',
-      //   title: card.dataset.title || '',
-      //   degree: card.dataset.degree || '',
-      //   office: card.dataset.office || '',
-      //   fields: card.dataset.fields || '',
-      //   expertise: card.dataset.expertise || '',
-      //   experience: card.dataset.experience || '',
-      //   phone: card.dataset.phone || '',
-      //   email: card.dataset.email || '',
-      //   website: card.dataset.website || '',
-      //   cv: card.dataset.cv || '',
-      //   photo: card.dataset.photo || card.querySelector('img')?.src || ''
         options: card.dataset.options || ''
       };
 
       // 基本資料
       nameEl.textContent = data.name;
       if (nameMobileEl) nameMobileEl.textContent = data.name;
-      // titleEl.textContent = data.title;
 
       // 清空、塞欄位
       infoEl.innerHTML = '';
-      // actionsEl.innerHTML = '';
 
       // 建立 select 元素
       const selectList = document.createElement("select");
@@ -160,39 +146,6 @@
         selectList.add(newOpt);
       })
       infoEl.appendChild(selectList);
-      
-      // const rows = [
-      //   ['degree', data.degree],
-      //   ['office', data.office],
-      //   ['fields', data.fields],
-      //   ['expertise', data.expertise],
-      //   ['experience', data.experience],
-      //   ['phone', data.phone],
-      //   ['email', data.email],
-      //   ['website', data.website],
-      //   ['cv', data.cv],
-      // ];
-
-      // rows.forEach(([key, val]) => {
-      //   if (!val) return;
-      //   const p = document.createElement('p');
-
-      //   // 轉換換行
-      //   const content = withLineBreaks(val);
-
-      //   if (key === 'email') {
-      //     p.innerHTML = `<strong>${label[key]}</strong><a href="mailto:${content}">${content}</a>`;
-      //   } else if (key === 'website' || key === 'cv') {
-      //     if (/^https?:\/\//i.test(content)) {
-      //       p.innerHTML = `<strong>${label[key]}</strong><a href="${content}" target="_blank" rel="noopener">${content}</a>`;
-      //     } else {
-      //       p.innerHTML = `<strong>${label[key]}</strong>${content}`;
-      //     }
-      //   } else {
-      //     p.innerHTML = `<strong>${label[key]}</strong>${content}`;
-      //   }
-      //   infoEl.appendChild(p);
-      // });
 
       // 手機顯示置頂列
       if (window.matchMedia('(max-width: 720px)').matches) {
