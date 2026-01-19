@@ -272,7 +272,7 @@ footer{
 
 /* ===== 資源頁圖片 ===== */
 .resourceImg{
-  width: fit-content;
+  width: 100%;
 }
 
 /* CSS */
@@ -320,13 +320,13 @@ footer{
   transform: translateY(0);
 }
 
-select {
-  appearance: none;
+.course-select {
+  appearance: auto;
   background-color: transparent;
-  border: none;
+  border: 2px solid #ffffff;
   padding: 0 1em 0 0;
   margin: 0;
-  width: fit-content;
+  width: 100%;
   font-family: inherit;
   font-size: inherit;
   cursor: inherit;

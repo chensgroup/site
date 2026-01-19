@@ -154,6 +154,7 @@
 
       // 建立 select 元素
       const selectList = document.createElement("select");
+      selectList.className = "course-select";
       data.options.split(' ').forEach((v, i) => {
         const newOpt = new Option(v, i);
         selectList.add(newOpt);
