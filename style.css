@@ -72,6 +72,14 @@ nav a:hover{
 .forYt:hover{
   color: #f00;
 }
+.lang-option{
+  color: var(--blue);
+  background: #fff;
+}
+.lang-option:hover{
+  color: #fff;
+  background: #0f0;
+}
 
 /* ===== 主要內容區 ===== */
 main{max-width:1100px;margin:0 auto;padding:2rem 1rem}
