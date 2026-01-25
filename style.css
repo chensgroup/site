@@ -371,7 +371,7 @@ footer{
 
 .dropdown-content a:hover {
   color: #ffffff;
-  background-color: linear-gradient(120deg, var(--blue), #6f3381);
+  background: linear-gradient(120deg, var(--blue), #6f3381);
 }
 
 .dropdown-container:hover .dropdown-content {
