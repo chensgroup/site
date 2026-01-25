@@ -30,13 +30,13 @@
     <li><a href="https://www2.phy.ntnu.edu.tw/" target="_blank" rel="noopener">師大物理系</a></li>
   </ul>
   <h2>選修物理單元</h2>
-    <div class="photo-grid">
-      <div class="personal-card profile" tabindex="0"
-           data-name="測試"
-           data-options="one two three">
-        <button class="course-button"><strong>測試</strong></button>
-      </div>
+  <div class="photo-grid">
+    <div class="person-card" tabindex="0"
+         data-name="測試"
+         data-options="one two three">
+      <button class="course-button"><strong>測試</strong></button>
     </div>
+  </div>
 </main>
 
   <!-- 通用彈窗 -->
@@ -164,7 +164,7 @@
     }, { passive: false });
 
     // 綁定所有可點卡片
-    const clickableCards = document.querySelectorAll('.person-card.profile');
+    const clickableCards = document.querySelectorAll('.person-card');
     clickableCards.forEach(card => {
       card.addEventListener('click', () => openModalFromCard(card));
       card.addEventListener('keydown', e => {
