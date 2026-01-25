@@ -359,7 +359,7 @@ footer{
   width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* 加點陰影比較好看 */
   z-index: 1;          /* 確保顯示在最上層 */
-  border-radius: 4px;
+  border-radius: 15px;
 }
 
 .dropdown-content a {
