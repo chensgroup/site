@@ -347,6 +347,11 @@ footer{
   line-height: inherit;
 }
 
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
 .dropdown-content {
   display: none;       /* 預設不顯示 */
   position: absolute;  /* 絕對定位，浮在上方 */
