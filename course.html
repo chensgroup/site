@@ -30,24 +30,28 @@
            data-name="物理教材教法"
            data-options="one two three">
         <button class="course-button"><strong>物理教材教法</strong></button>
+        <div class="dropdown-content" id="dropdownList"></div>
       </div>
 
       <div class="person-card" tabindex="0"
            data-name="物理教學實習"
            data-options="1 2 3">
         <button class="course-button"><strong>物理教學實習</strong></button>
+        <div class="dropdown-content" id="dropdownList"></div>
       </div>
 
       <div class="person-card" tabindex="0"
            data-name="自然領域探究與實作"
            data-options="one two three">
         <button class="course-button"><strong>自然領域探究與實作</strong></button>
+        <div class="dropdown-content" id="dropdownList"></div>
       </div>
 
       <div class="person-card" tabindex="0"
            data-name="自然科學領域概論"
            data-options="one two three">
         <button class="course-button"><strong>自然科學領域概論（小教）</strong></button>
+        <div class="dropdown-content" id="dropdownList"></div>
       </div>
     </div>
 
@@ -176,7 +180,35 @@
     // 綁定所有可點卡片
     const clickableCards = document.querySelectorAll('.person-card');
     clickableCards.forEach(card => {
-      card.addEventListener('click', () => openModalFromCard(card));
+      const data = {
+        options: card.dataset.options || ''
+      };
+
+      let hoverDrop = card.querySelector('.dropdown-content');
+      if (hoverDrop) {
+        if (data.options) {
+          data.options.split(' ').filter(Boolean).forEach((v, i) => {
+             // 1. 建立子項目
+             const subItem = document.createElement("a");
+             subItem.textContent = v;
+             subItem.href = "javascript:void(0);"; // 防止頁面跳轉
+             
+             // 2. ★ 關鍵邏輯：點擊時開啟彈窗並選中對應項目
+             subItem.onclick = (e) => {
+                 e.preventDefault();
+                 e.stopPropagation(); // ★ 重要：阻止事件冒泡，避免觸發 card 本身的 click 事件
+                 
+                 // 呼叫第一步修改後的函式，傳入 card 本體與目前的索引 i
+                 openModalFromCard(card, i);
+             };
+      
+             // 3. 加入容器
+             hoverDrop.appendChild(subItem);
+          });
+        }
+      }
+
+      card.addEventListener('click', () => openModalFromCard(card, 0));
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
