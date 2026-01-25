@@ -35,11 +35,6 @@
          data-name="測試"
          data-options="one two three">
       <button class="course-button"><strong>測試</strong></button>
-      <div class="dropdown-content" id="dropdownList">
-        <a href="/page1">子項目 A</a>
-        <a href="/page2">子項目 B</a>
-        <a href="/page3">子項目 C</a>
-      </div>
     </div>
   </div>
 </main>
@@ -51,6 +46,7 @@
       <div class="modal__topbar" style="display:none;">
         <div class="name" id="m-name-mobile"></div>
         <button class="modal__close" aria-label="關閉">&times;</button>
+        <div class="dropdown-content" id="dropdownList"></div>
       </div>
 
       <!-- 桌機右上角關閉（手機會隱藏：由 CSS 控制） -->
@@ -81,18 +77,6 @@
     const infoEl = document.getElementById('m-info');
     const bodyEl = modal.querySelector('.modal__body');
 
-    // const label = {
-    //   degree: '最高學歷：',
-    //   office: 'Office：',
-    //   fields: '研究領域：',
-    //   expertise: '研究專長：',
-    //   experience: '研究經歷：',
-    //   phone: '電話：',
-    //   email: '信箱：',
-    //   website: '個人網站：',
-    //   cv: '簡歷：'
-    // };
-
     // 真·滾動鎖（記住捲動位置並固定 body）
     let _scrollY = 0;
     function lockBodyScroll(){
@@ -108,7 +92,7 @@
       document.documentElement.style.scrollBehavior = '';
     }
 
-    function openModalFromCard(card){
+    function openModalFromCard(card, selectedIndex = 0){
       const data = {
         name: card.dataset.name || '',
         options: card.dataset.options || ''
@@ -128,6 +112,7 @@
         const newOpt = new Option(v, i);
         selectList.add(newOpt);
       })
+      selectList.selectedIndex = selectedIndex;
       infoEl.appendChild(selectList);
 
       // 手機顯示置頂列
@@ -171,7 +156,35 @@
     // 綁定所有可點卡片
     const clickableCards = document.querySelectorAll('.person-card');
     clickableCards.forEach(card => {
-      card.addEventListener('click', () => openModalFromCard(card));
+      const data = {
+        options: card.dataset.options || ''
+      };
+
+      let hoverDrop = card.querySelector('.dropdown-content');
+      if (hoverDrop) {
+        if (data.options) {
+          data.options.split(' ').filter(Boolean).forEach((v, i) => {
+             // 1. 建立子項目
+             const subItem = document.createElement("a");
+             subItem.textContent = v;
+             subItem.href = "javascript:void(0);"; // 防止頁面跳轉
+             
+             // 2. ★ 關鍵邏輯：點擊時開啟彈窗並選中對應項目
+             subItem.onclick = (e) => {
+                 e.preventDefault();
+                 e.stopPropagation(); // ★ 重要：阻止事件冒泡，避免觸發 card 本身的 click 事件
+                 
+                 // 呼叫第一步修改後的函式，傳入 card 本體與目前的索引 i
+                 openModalFromCard(card, i);
+             };
+      
+             // 3. 加入容器
+             hoverDrop.appendChild(subItem);
+          });
+        }
+      }
+
+      card.addEventListener('click', () => openModalFromCard(card, 0));
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
