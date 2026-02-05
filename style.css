@@ -100,7 +100,7 @@ main{max-width:1100px;margin:0 auto;padding:2rem 1rem}
   padding:2rem 0;
 }
 .person-card{
-  width:300px;
+  width:100%;
   text-align:center;
 }
 .person-card img{
