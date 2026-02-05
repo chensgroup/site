@@ -24,15 +24,174 @@
   </header>
 
   <main>
+    <div class="photo-grid">
     <h2>Recommend Websites</h2>
-    <ul>
-      <li><a href="https://chendaneyl.blogspot.com/" target="_blank" rel="noopener">Counterfeit Science Teacher</a></li>
-      <li><a href="https://www2.phy.ntnu.edu.tw/index.php/en/index_en/" target="_blank" rel="noopener">Department of Physics, National Taiwan Normal University</a></li>
-    </ul>
+    <div class="person-card dropdown-container" tabindex="0"
+         data-name="Counterfeit Science Teacher">
+      <button class="course-button" href="https://chendaneyl.blogspot.com/" target="_blank" rel="noopener"><strong>Counterfeit Science Teacher</strong></button>
+    </div>
+
+    <div class="person-card dropdown-container" tabindex="0"
+         data-name="Department of Physics, National Taiwan Normal University">
+      <button class="course-button" href="https://chendaneyl.blogspot.com/" target="_blank" rel="noopener"><strong>Department of Physics, National Taiwan Normal University</strong></button>
+    </div>
+    </div>
   </main>
+
+  <!-- 通用彈窗 -->
+  <div class="modal" id="profile-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__panel">
+      <!-- 手機置頂列（手機顯示、桌機隱藏：由 CSS 控制） -->
+      <div class="modal__topbar" style="display:none;">
+        <div class="name" id="m-name-mobile"></div>
+        <button class="modal__close" aria-label="關閉">&times;</button>
+        <div class="dropdown-content" id="dropdownList"></div>
+      </div>
+
+      <!-- 桌機右上角關閉（手機會隱藏：由 CSS 控制） -->
+      <button class="modal__close" aria-label="關閉" title="關閉">&times;</button>
+
+      <div class="modal__body">
+        <h2 id="m-name"></h2>
+        <!-- div class="modal__subtitle" id="m-title"></div -->
+        <div class="modal__info" id="m-info"></div>
+        <!-- div class="modal__actions" id="m-actions"></div -->
+      </div>
+    </div>
+  </div>
 
   <footer>
     <p>© 2025 Chen’s Group</p>
   </footer>
+
+  <script>
+  (() => {
+    const modal = document.getElementById('profile-modal');
+    const panel = modal.querySelector('.modal__panel');
+    const closeBtns = modal.querySelectorAll('.modal__close');
+    const topbar = modal.querySelector('.modal__topbar');
+
+    const nameEl = document.getElementById('m-name');
+    const nameMobileEl = document.getElementById('m-name-mobile');
+    const infoEl = document.getElementById('m-info');
+    const bodyEl = modal.querySelector('.modal__body');
+
+    // 真·滾動鎖（記住捲動位置並固定 body）
+    let _scrollY = 0;
+    function lockBodyScroll(){
+      _scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.setProperty('--scroll-lock', `-${_scrollY}px`);
+      document.body.classList.add('no-scroll');
+    }
+    function unlockBodyScroll(){
+      document.body.classList.remove('no-scroll');
+      document.body.style.removeProperty('--scroll-lock');
+      window.scrollTo(0, _scrollY);
+      document.documentElement.style.scrollBehavior = '';
+    }
+
+    function openModalFromCard(card, selectedIndex = 0){
+      const data = {
+        name: card.dataset.name || '',
+        options: card.dataset.options || ''
+      };
+
+      // 基本資料
+      nameEl.textContent = data.name;
+      if (nameMobileEl) nameMobileEl.textContent = data.name;
+
+      // 清空、塞欄位
+      infoEl.innerHTML = '';
+
+      // 建立 select 元素
+      const selectList = document.createElement("select");
+      selectList.className = "course-select";
+      data.options.split(' ').forEach((v, i) => {
+        const newOpt = new Option(v, i);
+        selectList.add(newOpt);
+      })
+      selectList.selectedIndex = selectedIndex;
+      infoEl.appendChild(selectList);
+
+      // 手機顯示置頂列
+      if (window.matchMedia('(max-width: 720px)').matches) {
+        if (topbar) topbar.style.display = 'flex';
+      } else {
+        if (topbar) topbar.style.display = 'none';
+      }
+
+      // 開啟
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden','false');
+      lockBodyScroll();
+
+      // 重設內容捲動位置
+      if (bodyEl) bodyEl.scrollTop = 0;
+
+      document.addEventListener('keydown', escToClose);
+    }
+
+    function closeModal(){
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+      unlockBodyScroll();
+      document.removeEventListener('keydown', escToClose);
+    }
+    function escToClose(e){ if (e.key === 'Escape') closeModal(); }
+
+    // 背景點擊關閉
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    // 面板內阻止冒泡
+    panel.addEventListener('click', e => e.stopPropagation());
+    // 關閉按鈕
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+    // iOS：只攔背景層觸控滾動，放行面板內
+    modal.addEventListener('touchmove', (e) => {
+      if (!e.target.closest('.modal__panel')) e.preventDefault();
+    }, { passive: false });
+
+    // 綁定所有可點卡片
+    const clickableCards = document.querySelectorAll('.person-card');
+    clickableCards.forEach(card => {
+      const data = {
+        options: card.dataset.options || ''
+      };
+
+      let hoverDrop = card.querySelector('.dropdown-content');
+      if (hoverDrop) {
+        if (data.options) {
+          data.options.split(' ').filter(Boolean).forEach((v, i) => {
+             // 1. 建立子項目
+             const subItem = document.createElement("a");
+             subItem.textContent = v;
+             subItem.href = "javascript:void(0);"; // 防止頁面跳轉
+             
+             // 2. ★ 關鍵邏輯：點擊時開啟彈窗並選中對應項目
+             subItem.onclick = (e) => {
+                 e.preventDefault();
+                 e.stopPropagation(); // ★ 重要：阻止事件冒泡，避免觸發 card 本身的 click 事件
+                 
+                 // 呼叫第一步修改後的函式，傳入 card 本體與目前的索引 i
+                 openModalFromCard(card, i);
+             };
+      
+             // 3. 加入容器
+             hoverDrop.appendChild(subItem);
+          });
+        }
+      }
+
+      card.addEventListener('click', () => openModalFromCard(card, 0));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModalFromCard(card);
+        }
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
