@@ -1,47 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chen's Group</title>
+  <title>NTNU Physics Education Team</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
-    <h1>Chen's Group</h1>
-    
-<nav class="menu-en">
-  <a href="index_en.html">Home</a>
-  <a href="member_en.html">Members</a>
-  <a href="research_en.html">Research</a>
-  <a href="course_en.html">Courses</a>
-  <a href="resource_en.html">Resources</a>
-  <a href="event_en.html">Events</a>
-  <a class="forYt" href="https://youtube.com/channel/UCCkcgVCncWmGhfgu9elQgjQ?si=ZbwjryW_BgaaabVk" target="_blank">YouTube</a>
-  <a class="lang-option" href="index.html">中文</a>
-</nav>
+    <h1>NTNU Physics Education Team</h1>
+
+    <nav class="menu-en">
+      <a href="index_en.html">Home</a>
+      <a href="member_en.html">Members</a>
+      <a href="research_en.html">Research</a>
+      <a href="course_en.html">Courses</a>
+      <a href="resource_en.html">Resources</a>
+      <a href="event_en.html">Events</a>
+      <a class="forYt" href="https://youtube.com/channel/UCCkcgVCncWmGhfgu9elQgjQ?si=ZbwjryW_BgaaabVk"
+        target="_blank">YouTube</a>
+      <a class="lang-option" href="index.html">中文</a>
+    </nav>
 
   </header>
 
   <main>
-    
-<section class="banner">
-  <h2>Welcome to Chen’s Group</h2>
-  <p>Our lab focuses on physics education, inquiry-based instruction, and bilingual curriculum development.</p>
-</section>
-<section class="news">
-  <h3>Latest News</h3>
-  <ul>
-    <li>Jan 25, 2026: Update course and resource page, add a button for YouTube link and highlight the language switch button.</li>
-    <li>Dec 22, 2025: Adjust the arrangement of members' page, and add a page for events.</li>
-    <li>Apr 10, 2025: Website is under construction. Stay tuned!</li>
-  </ul>
-</section>
+
+    <section class="banner">
+      <h2 style="font-size: 30px;">Welcome to <span style="color: #007BFF; font-size: 40px;">NTNU Physics Education
+          Team</span></h2>
+      <p style="font-size: 20px;">Our lab focuses on physics education, inquiry-based instruction, and bilingual
+        curriculum development.</p>
+    </section>
+
+    <section class="slideshow-section">
+      <div class="slideshow-container" id="slideshow-container">
+        <!-- Slides are dynamically loaded from index directory -->
+      </div>
+    </section>
+
+    <section class="news">
+      <h3>Latest News</h3>
+      <ul>
+        <li>Jun 25, 2026: Change website name, add a slideshow on the home page</li>
+        <li>Jan 25, 2026: Update course and resource page, add a button for YouTube link and highlight the language
+          switch button.</li>
+        <li>Dec 22, 2025: Adjust the arrangement of members' page, and add a page for events.</li>
+        <li>Apr 10, 2025: Website is under construction. Stay tuned!</li>
+      </ul>
+    </section>
 
   </main>
 
+  <script>
+    const images = [
+      "index/DSC00004.JPG",
+      "index/DSC02428.JPG",
+      "index/DSC03441.JPG",
+      "index/DSC09029.JPG",
+      "index/DSC09432.JPG",
+      "index/DSC09464.JPG"
+    ];
+
+    let slideIndex = 1;
+    let slideTimeout;
+
+    function initSlideshow() {
+      const container = document.getElementById('slideshow-container');
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      images.forEach((src, idx) => {
+        const slide = document.createElement('div');
+        slide.className = `slide${idx === 0 ? ' active' : ''}`;
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Slideshow photo ${idx + 1}`;
+
+        slide.appendChild(img);
+        container.appendChild(slide);
+      });
+
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'slideshow-prev';
+      prevBtn.innerHTML = '&#10094;';
+      prevBtn.onclick = () => moveSlide(-1);
+
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'slideshow-next';
+      nextBtn.innerHTML = '&#10095;';
+      nextBtn.onclick = () => moveSlide(1);
+
+      container.appendChild(prevBtn);
+      container.appendChild(nextBtn);
+
+      const dotsContainer = document.createElement('div');
+      dotsContainer.className = 'slideshow-dots';
+
+      images.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = `dot${idx === 0 ? ' active' : ''}`;
+        dot.onclick = () => currentSlide(idx);
+        dotsContainer.appendChild(dot);
+      });
+
+      container.appendChild(dotsContainer);
+
+      slideTimeout = setTimeout(showSlides, 5000);
+    }
+
+    function showSlides() {
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      if (slides.length === 0) return;
+
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+
+      slides[slideIndex - 1].classList.add('active');
+      dots[slideIndex - 1].classList.add('active');
+
+      slideTimeout = setTimeout(showSlides, 5000);
+    }
+
+    function moveSlide(n) {
+      clearTimeout(slideTimeout);
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      if (slides.length === 0) return;
+
+      slides[slideIndex - 1].classList.remove('active');
+      dots[slideIndex - 1].classList.remove('active');
+
+      slideIndex += n;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+      if (slideIndex < 1) { slideIndex = slides.length; }
+
+      slides[slideIndex - 1].classList.add('active');
+      dots[slideIndex - 1].classList.add('active');
+
+      slideTimeout = setTimeout(showSlides, 5000);
+    }
+
+    function currentSlide(n) {
+      clearTimeout(slideTimeout);
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      if (slides.length === 0) return;
+
+      slides[slideIndex - 1].classList.remove('active');
+      dots[slideIndex - 1].classList.remove('active');
+
+      slideIndex = n + 1;
+
+      slides[slideIndex - 1].classList.add('active');
+      dots[slideIndex - 1].classList.add('active');
+
+      slideTimeout = setTimeout(showSlides, 5000);
+    }
+
+    document.addEventListener('DOMContentLoaded', initSlideshow);
+  </script>
+
   <footer>
-    <p>© 2025 Chen’s Group</p>
+    <p>© 2026 NTNU Physics Education Team<br>Contact us: ntnuphyedu0101@gmail.com</p>
   </footer>
 </body>
+
 </html>
