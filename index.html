@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>師大物理教育團隊</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
   <header>
     <h1>師大物理教育團隊</h1>
-
     <nav class="menu-zh">
       <a href="index.html">首頁</a>
       <a href="member.html">成員</a>
@@ -23,22 +20,16 @@
         target="_blank">YouTube</a>
       <a class="lang-option" href="index_en.html">English</a>
     </nav>
-
   </header>
-
   <main>
-
     <section class="banner">
       <h2 style="font-size: 30px;">歡迎來到<span style="color: #007BFF; font-size: 40px;">師大物理教育團隊</span></h2>
       <p style="font-size: 20px;">本實驗室專注於物理教育、探究教學與雙語課程發展。</p>
     </section>
-
     <section class="slideshow-section">
       <div class="slideshow-container" id="slideshow-container">
-        <!-- Slides are dynamically loaded from index directory -->
       </div>
     </section>
-
     <section class="news">
       <h3>最新消息</h3>
       <ul>
@@ -49,127 +40,10 @@
         <li>2025/04/10：網站建置中，敬請期待！</li>
       </ul>
     </section>
-
   </main>
-
-  <script>
-    const images = [
-      "index/DSC00004.JPG",
-      "index/DSC02428.JPG",
-      "index/DSC03441.JPG",
-      "index/DSC09029.JPG",
-      "index/DSC09432.JPG",
-      "index/DSC09464.JPG"
-    ];
-
-    let slideIndex = 1;
-    let slideTimeout;
-
-    function initSlideshow() {
-      const container = document.getElementById('slideshow-container');
-      if (!container) return;
-
-      container.innerHTML = '';
-
-      images.forEach((src, idx) => {
-        const slide = document.createElement('div');
-        slide.className = `slide${idx === 0 ? ' active' : ''}`;
-
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Slideshow photo ${idx + 1}`;
-
-        slide.appendChild(img);
-        container.appendChild(slide);
-      });
-
-      const prevBtn = document.createElement('button');
-      prevBtn.className = 'slideshow-prev';
-      prevBtn.innerHTML = '&#10094;';
-      prevBtn.onclick = () => moveSlide(-1);
-
-      const nextBtn = document.createElement('button');
-      nextBtn.className = 'slideshow-next';
-      nextBtn.innerHTML = '&#10095;';
-      nextBtn.onclick = () => moveSlide(1);
-
-      container.appendChild(prevBtn);
-      container.appendChild(nextBtn);
-
-      const dotsContainer = document.createElement('div');
-      dotsContainer.className = 'slideshow-dots';
-
-      images.forEach((_, idx) => {
-        const dot = document.createElement('span');
-        dot.className = `dot${idx === 0 ? ' active' : ''}`;
-        dot.onclick = () => currentSlide(idx);
-        dotsContainer.appendChild(dot);
-      });
-
-      container.appendChild(dotsContainer);
-
-      slideTimeout = setTimeout(showSlides, 5000);
-    }
-
-    function showSlides() {
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      if (slides.length === 0) return;
-
-      slides.forEach(slide => slide.classList.remove('active'));
-      dots.forEach(dot => dot.classList.remove('active'));
-
-      slideIndex++;
-      if (slideIndex > slides.length) { slideIndex = 1; }
-
-      slides[slideIndex - 1].classList.add('active');
-      dots[slideIndex - 1].classList.add('active');
-
-      slideTimeout = setTimeout(showSlides, 5000);
-    }
-
-    function moveSlide(n) {
-      clearTimeout(slideTimeout);
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      if (slides.length === 0) return;
-
-      slides[slideIndex - 1].classList.remove('active');
-      dots[slideIndex - 1].classList.remove('active');
-
-      slideIndex += n;
-      if (slideIndex > slides.length) { slideIndex = 1; }
-      if (slideIndex < 1) { slideIndex = slides.length; }
-
-      slides[slideIndex - 1].classList.add('active');
-      dots[slideIndex - 1].classList.add('active');
-
-      slideTimeout = setTimeout(showSlides, 5000);
-    }
-
-    function currentSlide(n) {
-      clearTimeout(slideTimeout);
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      if (slides.length === 0) return;
-
-      slides[slideIndex - 1].classList.remove('active');
-      dots[slideIndex - 1].classList.remove('active');
-
-      slideIndex = n + 1;
-
-      slides[slideIndex - 1].classList.add('active');
-      dots[slideIndex - 1].classList.add('active');
-
-      slideTimeout = setTimeout(showSlides, 5000);
-    }
-
-    document.addEventListener('DOMContentLoaded', initSlideshow);
-  </script>
-
+  <script src="slideshow.js"></script>
   <footer>
     <p>© 2026 師大物理教育團隊<br>聯絡我們：ntnuphyedu0101@gmail.com</p>
   </footer>
 </body>
-
 </html>
