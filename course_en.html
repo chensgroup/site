@@ -1,30 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NTNU Physics Education Team</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
     <h1>NTNU Physics Education Team</h1>
-<nav class="menu-en">
-  <a href="index_en.html">Home</a>
-  <a href="member_en.html">Members</a>
-  <a href="research_en.html">Research</a>
-  <a href="course_en.html">Courses</a>
-  <a href="resource_en.html">Resources</a>
-  <a href="event_en.html">Events</a>
-  <a class="forYt" href="https://youtube.com/channel/UCCkcgVCncWmGhfgu9elQgjQ?si=ZbwjryW_BgaaabVk" target="_blank">YouTube</a>
-  <a class="lang-option" href="index.html">中文</a>
-</nav>
+    <nav class="menu-en">
+      <a href="index_en.html">Home</a>
+      <a href="member_en.html">Members</a>
+      <a href="research_en.html">Research</a>
+      <a href="course_en.html">Courses</a>
+      <a href="resource_en.html">Resources</a>
+      <a href="event_en.html">Events</a>
+      <a class="forYt" href="https://youtube.com/channel/UCCkcgVCncWmGhfgu9elQgjQ?si=ZbwjryW_BgaaabVk"
+        target="_blank">YouTube</a>
+      <a class="lang-option" href="course.html">中文</a>
+    </nav>
   </header>
   <main>
-    <h2>Course Info</h2><p>Content coming soon.</p>
+    <h2>Course Info<span style="font-size: 14px; vertical-align: middle;"><br>Click on a course to view details</span>
+    </h2>
+    <div class="photo-grid">
+      <div class="person-card" tabindex="0">
+        <button class="course-button"><strong>Physics Pedagogy</strong></button>
+      </div>
+      <div class="person-card" tabindex="0">
+        <button class="course-button"><strong>Physics Teaching Practicum</strong></button>
+      </div>
+      <div class="person-card" tabindex="0">
+        <button class="course-button"><strong>Inquiry and Practice in Natural Sciences</strong></button>
+      </div>
+      <div class="person-card" tabindex="0">
+        <button class="course-button"><strong>Introduction to Natural Sciences (Elementary)</strong></button>
+      </div>
+    </div>
+    <h2>Past Courses<span style="font-size: 14px; vertical-align: middle;"><br>Click on a course to view details</span>
+    </h2>
+    <h2>Course Handouts</h2>
+    <p>
+      <a href="courses/IMRD是學術論文的基本架構.pdf" target="_blank">
+        📄 IMRD is the Basic Structure of Academic Papers (PDF)
+      </a>
+    </p>
   </main>
+  <div class="modal" id="profile-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__panel">
+      <div class="modal__topbar" style="display:none;">
+        <div class="name" id="m-name-mobile"></div>
+        <button class="modal__close" aria-label="Close">&times;</button>
+      </div>
+      <button class="modal__close" aria-label="Close" title="Close">&times;</button>
+      <div class="modal__body">
+        <h2 id="m-name"></h2>
+        <div class="modal__info" id="m-info"></div>
+      </div>
+    </div>
+  </div>
   <footer>
     <p>© 2026 NTNU Physics Education Team<br>Contact us: ntnuphyedu0101@gmail.com</p>
   </footer>
+  <script src="course.js"></script>
 </body>
+
 </html>
